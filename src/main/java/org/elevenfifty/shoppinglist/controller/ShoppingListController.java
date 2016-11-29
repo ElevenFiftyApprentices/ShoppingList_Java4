@@ -19,18 +19,18 @@ public class ShoppingListController {
 	@Autowired
 	private ShoppingListRepository shoppingListRepository;
 
-	@GetMapping("/products")
-	public String getProducts(Model model) {
-		model.addAttribute("products", productRepo.findAll());
-		return "product/products";
+	@GetMapping("/shoppinglists")
+	public String getShoppingLists(Model model) {
+		model.addAttribute("shoppinglists", shoppingListRepository.findAll());
+		return "shoppinglist/shoppinglists";
 	}
 	
-	@GetMapping("/product/{id}")
-	public String product(Model model, @PathVariable(name = "id") long id) {
+	@GetMapping("/shoppinglist/{id}")
+	public String shoppinglist(Model model, @PathVariable(name = "id") long id) {
 		model.addAttribute("id", id);
-		Product p = productRepo.findOne(id);
-		model.addAttribute("product", p);
-		return "product/product_detail";
+		ShoppingList s = shoppingListRepository.findOne(id);
+		model.addAttribute("shoppinglist", s);
+		return "shoppinglist/shoppinglist_detail";
 	}
 
 	@GetMapping("/product/{id}/edit")
