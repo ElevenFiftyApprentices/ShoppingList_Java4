@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 /org/
+=======
+/application.properties
+/data.sql
+/org/
+/schema.sql
+>>>>>>> 1c7bcd073fc0ae333c58d7682f5e0e737f5f8eba
 /templates/
