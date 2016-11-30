@@ -15,20 +15,21 @@ public class ShoppingList {
 	private long id;
 	
 	@Size(max = 16)
-	private String shoppingListId;
+	private long userId;
 	
 	@Size(max = 36)
-	private String shoppingListName;
+	private String Name;
 	
 	@Size(max = 36)
-	private String shoppingListColor;
+	private String Color;
 
 	@Size(max = 36)
-	private String shoppingListCreatedUtc;
+	private String CreatedUtc;
 	
 	@Size(max = 36)
-	private String shoppingListModifiedUtc;
+	private String ModifiedUtc;
 
+	
 	public long getId() {
 		return id;
 	}
@@ -36,30 +37,47 @@ public class ShoppingList {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getShoppingListId() {
-		return shoppingListId;
+
+	public long getUserId() {
+		return userId;
 	}
-	public void setShoppingListId(String shoppingListId) {
-		this.shoppingListId = shoppingListId;
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
-	public String getShoppingListName() {
-		return shoppingListName;
+
+	public String getName() {
+		return Name;
 	}
-	public void setPShoppingListName(String shoppingListName) {
-		this.shoppingListName = shoppingListName;
+
+	public void setName(String name) {
+		Name = name;
 	}
-	public String getShoppingListColor() {
-		return shoppingListColor;
+
+	public String getColor() {
+		return Color;
 	}
-	public void setShoppingListColor(String shoppingListColor) {
-		this.shoppingListColor = shoppingListColor;
+
+	public void setColor(String color) {
+		Color = color;
 	}
-	public String getShoppingListCreatedUtc() {
-		return shoppingListCreatedUtc;
+
+	public String getCreatedUtc() {
+		return CreatedUtc;
 	}
-	public void setShoppingListCreatedUtc(String shoppingListCreatedUtc) {
-		this.shoppingListCreatedUtc = shoppingListCreatedUtc;
+
+	public void setCreatedUtc(String createdUtc) {
+		CreatedUtc = createdUtc;
 	}
+
+	public String getModifiedUtc() {
+		return ModifiedUtc;
+	}
+
+	public void setModifiedUtc(String modifiedUtc) {
+		ModifiedUtc = modifiedUtc;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -80,14 +98,6 @@ public class ShoppingList {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	public String getShoppingListModifiedUtc() {
-		return shoppingListModifiedUtc;
-	}
-
-	public void setShoppingListModifiedUtc(String shoppingListModifieddUtc) {
-		this.shoppingListModifiedUtc = shoppingListModifiedUtc;
 	}
 
 }
