@@ -15,15 +15,19 @@ public class ShoppingList {
 	private long id;
 	
 	@Size(max = 16)
-	private String productId;
+	private String shoppingListId;
 	
 	@Size(max = 36)
-	private String productName;
+	private String shoppingListName;
 	
 	@Size(max = 36)
-	private String productManufacturer;
+	private String shoppingListColor;
 
-	private double productPrice;
+	@Size(max = 36)
+	private String shoppingListCreatedUtc;
+	
+	@Size(max = 36)
+	private String shoppingListModifiedUtc;
 
 	public long getId() {
 		return id;
@@ -32,29 +36,29 @@ public class ShoppingList {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getProductId() {
-		return productId;
+	public String getShoppingListId() {
+		return shoppingListId;
 	}
-	public void setProductId(String productId) {
-		this.productId = productId;
+	public void setShoppingListId(String shoppingListId) {
+		this.shoppingListId = shoppingListId;
 	}
-	public String getProductName() {
-		return productName;
+	public String getShoppingListName() {
+		return shoppingListName;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setPShoppingListName(String shoppingListName) {
+		this.shoppingListName = shoppingListName;
 	}
-	public String getProductManufacturer() {
-		return productManufacturer;
+	public String getShoppingListColor() {
+		return shoppingListColor;
 	}
-	public void setProductManufacturer(String productManufacturer) {
-		this.productManufacturer = productManufacturer;
+	public void setShoppingListColor(String shoppingListColor) {
+		this.shoppingListColor = shoppingListColor;
 	}
-	public double getProductPrice() {
-		return productPrice;
+	public String getShoppingListCreatedUtc() {
+		return shoppingListCreatedUtc;
 	}
-	public void setProductPrice(double productPrice) {
-		this.productPrice = productPrice;
+	public void setShoppingListCreatedUtc(String shoppingListCreatedUtc) {
+		this.shoppingListCreatedUtc = shoppingListCreatedUtc;
 	}
 	@Override
 	public int hashCode() {
@@ -76,6 +80,14 @@ public class ShoppingList {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public String getShoppingListModifiedUtc() {
+		return shoppingListModifiedUtc;
+	}
+
+	public void setShoppingListModifiedUtc(String shoppingListModifieddUtc) {
+		this.shoppingListModifiedUtc = shoppingListModifiedUtc;
 	}
 
 }
