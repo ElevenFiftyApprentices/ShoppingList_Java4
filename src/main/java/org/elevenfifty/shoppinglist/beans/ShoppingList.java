@@ -18,18 +18,17 @@ public class ShoppingList {
 	private long userId;
 	
 	@Size(max = 36)
-	private String Name;
+	private String name;
 	
 	@Size(max = 36)
-	private String Color;
+	private String color;
 
 	@Size(max = 36)
-	private String CreatedUtc;
+	private String createdUtc;
 	
 	@Size(max = 36)
-	private String ModifiedUtc;
+	private String modifiedUtc;
 
-	
 	public long getId() {
 		return id;
 	}
@@ -47,35 +46,35 @@ public class ShoppingList {
 	}
 
 	public String getName() {
-		return Name;
+		return name;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 
 	public String getColor() {
-		return Color;
+		return color;
 	}
 
 	public void setColor(String color) {
-		Color = color;
+		this.color = color;
 	}
 
 	public String getCreatedUtc() {
-		return CreatedUtc;
+		return createdUtc;
 	}
 
 	public void setCreatedUtc(String createdUtc) {
-		CreatedUtc = createdUtc;
+		this.createdUtc = createdUtc;
 	}
 
 	public String getModifiedUtc() {
-		return ModifiedUtc;
+		return modifiedUtc;
 	}
 
 	public void setModifiedUtc(String modifiedUtc) {
-		ModifiedUtc = modifiedUtc;
+		this.modifiedUtc = modifiedUtc;
 	}
 
 	@Override
