@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<title>Shopping List Create</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+
+	<div class="row">
+
+		<h1>Create Shopping List</h1>
+
+		<form method="POST" th:object="${shoppingList}"
+			enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="form-group">
+				<label for="">Shopping List ID</label> <input type="text"
+					name="shoppingListId" class="form-control"
+					placeholder="shoppingList ID" th:field="*{shoppingListId}" /> <span
+					th:if="${#fields.hasErrors('shoppingListId')}"
+					th:errors="*{shoppingListId}">Shopping List ID</span>
+			</div>
+
+			<div class="form-group">
+				<label for="shoppingListName">Shopping List Name</label> <input
+					type="text" name="shoppingListName" class="form-control"
+					placeholder="shoppingListName" th:field="*{shoppingListName}" />
+				<span th:if="${#fields.hasErrors('shoppingListName')}"
+					th:errors="*{shoppingListName}">Shopping List Name</span>
+			</div>
+
+			<div class="form-group">
+				<label for="shoppingListColor">Shopping List
+					Color</label> <input type="text" name="shoppingListColor"
+					class="form-control" placeholder="shoppingListColor"
+					th:field="*{shoppingListColor}" /> <span
+					th:if="${#fields.hasErrors('shoppingListColor')}"
+					th:errors="*{shoppingListColor}">Shopping List
+					Color</span>
+			</div>
+
+			<div class="form-group">
+				<label for="shoppingListCreatedUtc">List Created On:</label> <input type="text"
+					name="shoppingListCreatedUtc" class="form-control"
+					placeholder="shoppingListCreatedUtc" th:field="*{shoppingListCreatedUtc}" />
+				<span th:if="${#fields.hasErrors('shoppingListCreatedUtc')}"
+					th:errors="*{shoppingListCreatedUtc}">List Created On:</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="shoppingListModifiedUtc">List Modified On:</label> <input type="text"
+					name="shoppingListModifiedUtc" class="form-control"
+					placeholder="shoppingListModifiedUtc" th:field="*{shoppingListModifiedUtc}" />
+				<span th:if="${#fields.hasErrors('shoppingListModifiedUtc')}"
+					th:errors="*{shoppingListModifiedUtc}">List Modified On:</span>
+			</div>
+
+			<button type="submit" class="btn btn-success">Submit</button>
+		</form>
+
+	</div>
+
+</body>
+</html>
