@@ -12,7 +12,7 @@ public class User
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long idKey;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -20,13 +20,13 @@ public class User
 	private String phoneNumber;
 	private boolean active;
 	
-	public long getIdKey()
+	public long getId()
 	{
-		return idKey;
+		return id;
 	}
-	public void setIdKey(long idKey)
+	public void setId(long id)
 	{
-		this.idKey = idKey;
+		this.id = id;
 	}
 	public String getFirstName()
 	{
@@ -67,7 +67,7 @@ public class User
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (idKey ^ (idKey >>> 32));
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
 	@Override
@@ -80,14 +80,14 @@ public class User
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (idKey != other.idKey)
+		if (id != other.id)
 			return false;
 		return true;
 	}
 	@Override
 	public String toString()
 	{
-		return "User [idKey=" + idKey + "]";
+		return "User [id=" + id + "]";
 	}
 	public String getPhoneNumber()
 	{
