@@ -1,99 +1,72 @@
 package org.elevenfifty.shoppinglist.controller;
 
-import javax.validation.Valid;
+import java.security.Permission;
+import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import static org.h2.util.StringUtils.isNullOrEmpty;
 
 @Controller
 public class ShoppingListController {
+	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
 	@Autowired
-	private ShoppingListRepository shoppingListRepository;
+	private ShoppingListRepository shoppingListRepo;
 
-	@GetMapping("/shoppingLists")
-	public String getShoppingList(Model model) {
-		model.addAttribute("shoppingLists", shoppingListRepository.findAll());
-		return "shoppingList/shoppingLists";
-	}
-	
-	@GetMapping("/shoppingList/{id}")
-	public String shoppingList(Model model, @PathVariable(value = "id") long id) {
-		model.addAttribute("id", id);
-		ShoppingList s = shoppingListRepository.findOne(id);
-		model.addAttribute("shoppinglist", s);
-		return "shoppinglist/shoppinglist_detail";
+	@Autowired
+	private Permission permissionService;
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/shoppingList/create", method = RequestMethod.GET)
+	public String createContact(Model model) {
+		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+
+		return "shoppingListCreate";
 	}
 
-//	@GetMapping("/shoppingList/{id}/edit")
-//	public String productEdit(Model model, @PathVariable(name = "id") long id) {
-//		model.addAttribute("id", id);
-//		Product p = productRepo.findOne(id);
-//		model.addAttribute("product", p);
-//		return "product/product_edit";
-//	}
-//	
-//	@PostMapping("/product/{id}/edit")
-//	public String productEditSave(@PathVariable(name = "id") long id, @ModelAttribute @Valid Product product,
-//			BindingResult result, Model model) {
-//		if (result.hasErrors()) {
-//			model.addAttribute("product", product);
-//			return "product/product_edit";
-//		} else {
-//			productRepo.save(product);
-//			return "redirect:/product/" + product.getId();
-//		}				
-//	}
-	
-//	@GetMapping("/product/{id}/delete")
-//	public String productDelete(Model model, @PathVariable(name = "id") long id) {
-//		model.addAttribute("id", id);
-//		Product p = productRepo.findOne(id);
-//		model.addAttribute("product", p);
-//		return "product/product_delete";
-//	}
-//
-//	@PostMapping("/product/{id}/delete")
-//	public String productDeleteSave(@PathVariable(name = "id") long id, @ModelAttribute @Valid Product product,
-//			BindingResult result, Model model) {
-//		if (result.hasErrors()) {
-//			model.addAttribute("product", product);
-//			return "product/products";
-//		} else {
-//			productRepo.delete(product);
-//			return "redirect:/products";
-//		}
-//	}
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/shoppingList/create", method = RequestMethod.POST)
+	public String createShoppingList(@ModelAttribute ShoppingList shoppingList, @RequestParam("file") MultipartFile file,
+			Model model) {
 
-	@GetMapping("/shoppingList/create")
-	public String shoppingListCreate(Model model) {
-		model.addAttribute(new ShoppingList());
-		return "shoppingList/shoppingList_create";
+		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
+
+		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
 	}
 
-	@PostMapping("/shoppingList/create")
-	public String shoppingListCreate(@ModelAttribute @Valid ShoppingList shoppingList, BindingResult result, Model model) {
+	@Secured("ROLE_USER")
+	@RequestMapping("/contacts")
+	public String listContacts(Model model) {
+		long currentUserId = permissionService.findCurrentUserId();
+		model.addAttribute("contacts", contactRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
+		return "listContacts";
+	}
 
-		if (result.hasErrors()) {
-			model.addAttribute("shoppingList", shoppingList);
-			return "shoppingList/shoppingList_create";
-		} else {
-			shoppingListRepository.save(shoppingList);
-			return "redirect:/shoppingLists";
+	@Secured("ROLE_USER")
+	@RequestMapping("/contact/{contactId}")
+	public String contact(@PathVariable long contactId, Model model) {
+		model.addAttribute("contact", contactRepo.findOne(contactId));
+
+		List<ContactImage> images = contactImageRepo.findByContactId(contactId);
+		if (!CollectionUtils.isEmpty(images)) {
+			model.addAttribute("contactImage", images.get(0));
 		}
+		model.addAttribute("permissions", permissionService);
+		return "contact";
+	}
 
 	}
 
 }
-			
-			
-		
-
