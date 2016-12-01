@@ -1,2 +1,4 @@
 /org/
 /templates/
+/data.sql
+/schema.sql
