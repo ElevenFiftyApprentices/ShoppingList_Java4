@@ -60,6 +60,7 @@ public class ShoppingListItemController {
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/{shoppingListItemId}/edit", method = RequestMethod.POST)
 	public String shoppingListItemEditSave(@ModelAttribute ShoppingListItem shoppingListItem, @PathVariable long shoppingListId, @PathVariable long shoppingListItemId, BindingResult result, Model model){
 		if(result.hasErrors()){
+			
 			model.addAttribute("shoppingListItem", shoppingListItem);
 			return "editShoppingListItem";
 		}
@@ -76,8 +77,10 @@ public class ShoppingListItemController {
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/add")
 	public String shoppingListItemAdd(@ModelAttribute ShoppingListItem shoppingListItem, Model model){
+		
 		ShoppingListItem savedShoppingListItem = shoppingListItemRepo.save(shoppingListItem);
-		return shoppingListItemEdit(savedShoppingListItem, savedShoppingListItem.getId(), model);
+		
+		return "shoppingListItems";
 		
 		
 	}
