@@ -75,4 +75,10 @@ public class ShoppingListItemController {
 	}
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/add")
+	public String shoppingListItemAdd(@ModelAttribute ShoppingListItem shoppingListItem, Model model){
+		ShoppingListItem savedShoppingListItem = shoppingListItemRepo.save(shoppingListItem);
+		return shoppingListItemEdit(savedShoppingListItem, savedShoppingListItem.getId(), model);
+		
+		
+	}
 }
