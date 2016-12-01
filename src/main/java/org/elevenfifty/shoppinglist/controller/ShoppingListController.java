@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -47,26 +49,21 @@ public class ShoppingListController {
 	}
 
 	@Secured("ROLE_USER")
-	@RequestMapping("/contacts")
+	@RequestMapping("/shoppinglists")
 	public String listContacts(Model model) {
 		long currentUserId = permissionService.findCurrentUserId();
-		model.addAttribute("contacts", contactRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
+		model.addAttribute("shoppingList", shoppingListRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
 		return "listContacts";
 	}
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/contact/{contactId}")
 	public String contact(@PathVariable long contactId, Model model) {
-		model.addAttribute("contact", contactRepo.findOne(contactId));
-
-		List<ContactImage> images = contactImageRepo.findByContactId(contactId);
-		if (!CollectionUtils.isEmpty(images)) {
-			model.addAttribute("contactImage", images.get(0));
-		}
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(contactId));
 		model.addAttribute("permissions", permissionService);
 		return "contact";
 	}
 
 	}
 
-}
+
