@@ -37,7 +37,7 @@ public class PermissionService {
 		return users != null && !users.isEmpty() ? users.get(0).getId() : -1;
 	}
 
-	public long findCurrentShoppingList() {
+	public long findCurrentShoppingListId() {
 		List<ShoppingList> lists = shoppingListRepo.findByName(getToken().getName());
 		return lists != null && !lists.isEmpty() ? lists.get(0).getId() : -1;
 	}

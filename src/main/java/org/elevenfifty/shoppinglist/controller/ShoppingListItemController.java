@@ -70,7 +70,7 @@ public class ShoppingListItemController {
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/add", method = RequestMethod.GET)
 	public String shoppinListItemAdd(Model model){
-		model.addAttribute("shoppingListItem", new ShoppingListItem(permissionService.findCurrentShoppingListId));
+		model.addAttribute("shoppingListItem", new ShoppingListItem(permissionService.findCurrentShoppingListId()));
 		
 		return "shoppingListItemAdd";
 	}
