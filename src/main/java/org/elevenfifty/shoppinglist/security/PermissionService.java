@@ -6,7 +6,9 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 
 import java.util.List;
 
+import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.beans.User;
+import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.elevenfifty.shoppinglist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -22,6 +24,8 @@ public class PermissionService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private ShoppingListRepository shoppingListRepo;
 
 	private AbstractAuthenticationToken getToken() {
 		return (AbstractAuthenticationToken) getContext().getAuthentication();
@@ -33,6 +37,10 @@ public class PermissionService {
 		return users != null && !users.isEmpty() ? users.get(0).getId() : -1;
 	}
 
+	public long findCurrentShoppingList() {
+		List<ShoppingList> lists = shoppingListRepo.findByName(getToken().getName());
+		return lists != null && !lists.isEmpty() ? lists.get(0).getId() : -1;
+	}
 
 	public boolean hasRole(Role role) {
 		for (GrantedAuthority ga : getToken().getAuthorities()) {

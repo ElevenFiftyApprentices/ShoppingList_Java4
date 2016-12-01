@@ -5,6 +5,12 @@ import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
+<<<<<<< HEAD
+=======
+import org.elevenfifty.shoppinglist.repositories.UserRepository;
+import org.elevenfifty.shoppinglist.security.PermissionService;
+
+>>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,28 +32,25 @@ public class ShoppingListController {
 
 	@Autowired
 	private ShoppingListRepository shoppingListRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Autowired
-	private Permission permissionService;
+	private PermissionService permissionService;
 
 	@Secured("ROLE_USER")
-	@RequestMapping(value = "/shoppingList/create", method = RequestMethod.GET)
-	public String createContact(Model model) {
-		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
-
-		return "shoppingListCreate";
+	@RequestMapping("/shoppingLists")
+	public String ShoppingList(Model model)
+	{
+		long currentUserId = permissionService.findCurrentUserId(); 
+		model.addAttribute("contacts", shoppingListRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
+		return "shoppingLists";
 	}
 
-	@Secured("ROLE_USER")
-	@RequestMapping(value = "/shoppingList/create", method = RequestMethod.POST)
-	public String createShoppingList(@ModelAttribute ShoppingList shoppingList, @RequestParam("file") MultipartFile file,
-			Model model) {
 
-		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
 
-		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
-	}
-
+<<<<<<< HEAD
 	@Secured("ROLE_USER")
 	@RequestMapping("/shoppinglists")
 	public String listContacts(Model model) {
@@ -63,7 +66,12 @@ public class ShoppingListController {
 		model.addAttribute("permissions", permissionService);
 		return "contact";
 	}
+=======
+}
+>>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
 
-	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
