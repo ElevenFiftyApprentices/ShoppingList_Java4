@@ -31,7 +31,13 @@ public class ShoppingListItem {
 	
 	private Date modifiedUtc;
 	
-	protected ShoppingListItem(){}
+	protected ShoppingListItem(){
+		
+	}
+	
+	public ShoppingListItem(long shoppingListId){
+		this.shoppingListId = shoppingListId;
+	}
 	
 	public ShoppingListItem(String contents, int priority , boolean isChecked, Date createdUtc, Date modifiedUtc){
 		this.contents = contents;

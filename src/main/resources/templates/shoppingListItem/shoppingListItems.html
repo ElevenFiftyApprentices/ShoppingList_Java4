@@ -8,8 +8,22 @@
 	<div class="row">
 		<h1 style="text-align: center">Items List</h1>
 		<table style="width:100%" border="2">
-		
-		
+			<thread>
+				<tr>
+					<th>√</th>
+					<th>Contents</th>
+					<th>Priority</th>
+					<th>Delete</th>
+				</tr>
+			</thread>
+			<tbody>
+				<tr th:each= "shoppingListItem: ${shoppingListItem}">
+					<td ><label th:each="*{shoppingListItem.isChecked} == true"><input type="checkbox" value="true" /></label></td>
+					<td th:text="${shoppingListItem.contents}"></td>
+					<td th:text="${shoppingListItem.priority}"></td>
+					<td><button type="button">Delete</button></td>
+				</tr>
+			</tbody>
 		</table>
 		
 	</div>

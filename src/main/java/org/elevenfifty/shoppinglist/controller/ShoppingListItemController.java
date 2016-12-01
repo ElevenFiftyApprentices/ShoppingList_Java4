@@ -2,6 +2,7 @@ package org.elevenfifty.shoppinglist.controller;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingListItem;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListItemRepository;
+import org.elevenfifty.shoppinglist.security.PermissionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class ShoppingListItemController {
 	
 	@Autowired
 	private ShoppingListItemRepository shoppingListItemRepo;
+
+	@Autowired
+	private PermissionService permissionService;
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}", method = RequestMethod.GET)
 	public String shoppingListItems(@PathVariable long shoppingListId, Model model ){
@@ -63,4 +67,12 @@ public class ShoppingListItemController {
 		return "redirect:/shoppingList/{shoppingListId}/{shoppingListItemId}";
 	}
 	
+	@RequestMapping(value = "/shoppingList/{shoppingListId}/add", method = RequestMethod.GET)
+	public String shoppinListItemAdd(Model model){
+		model.addAttribute("shoppingListItem", new ShoppingListItem(permissionService.findCurrentShoppingListId));
+		
+		return "shoppingListItemAdd";
+	}
+	
+	@RequestMapping(value = "/shoppingList/{shoppingListId}/add")
 }
