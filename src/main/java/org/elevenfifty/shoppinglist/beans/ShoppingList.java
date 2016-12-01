@@ -1,33 +1,56 @@
 package org.elevenfifty.shoppinglist.beans;
+
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "shoppinglists")
+@Table(name = "shoppingLists")
 public class ShoppingList {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Size(max = 16)
 	private long userId;
-	
-	@Size(max = 36)
+
 	private String name;
-	
-	@Size(max = 36)
 	private String color;
 
-	@Size(max = 36)
-	private String createdUtc;
-	
-	@Size(max = 36)
-	private String modifiedUtc;
+	@Column(unique = true)
+	private Date createdUtc;
+	private Date modifiedUtc;
+	// private String password;
+	private boolean active;
+
+	protected ShoppingList() {
+	}
+
+	public ShoppingList(long userId) {
+		this.userId = userId;
+		this.active = true;
+	}
+
+	public ShoppingList(String name, String color, Date createdUtc, Date modifiedUtc, String password, boolean active,
+			long userId) {
+		this.name = name;
+		this.color = color;
+		this.createdUtc = createdUtc;
+		this.modifiedUtc = modifiedUtc;
+		// this.password = password;
+		this.active = active;
+		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", color=" + color + ", createdUtc=" + createdUtc
+				+ ", modifiedUtc=" + modifiedUtc + active + "]";
+	}
 
 	public long getId() {
 		return id;
@@ -61,42 +84,28 @@ public class ShoppingList {
 		this.color = color;
 	}
 
-	public String getCreatedUtc() {
+	public Date getCreatedUtc() {
 		return createdUtc;
 	}
 
-	public void setCreatedUtc(String createdUtc) {
+	public void setCreatedUtc(Date createdUtc) {
 		this.createdUtc = createdUtc;
 	}
 
-	public String getModifiedUtc() {
+	public Date getModifiedUtc() {
 		return modifiedUtc;
 	}
 
-	public void setModifiedUtc(String modifiedUtc) {
+	public void setModifiedUtc(Date modifiedUtc) {
 		this.modifiedUtc = modifiedUtc;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
-		return result;
+	public boolean isActive() {
+		return active;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ShoppingList other = (ShoppingList) obj;
-		if (id != other.id)
-			return false;
-		return true;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }
