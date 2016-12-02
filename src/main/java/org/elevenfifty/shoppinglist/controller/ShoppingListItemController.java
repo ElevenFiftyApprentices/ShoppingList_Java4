@@ -51,7 +51,7 @@ public class ShoppingListItemController {
 	}
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/{shoppingListItemId}/edit", method = RequestMethod.GET)
-	public String shoppingListItemEdit(@PathVariable long shoppingListId, @PathVariable long shoppingListItemId, Model model){
+	public String shoppingListItemEdit(@PathVariable ShoppingListItem savedShoppingListItem, @PathVariable long shoppingListItemId, Model model){
 		model.addAttribute("shoppingListItem", shoppingListItemRepo.findOne(shoppingListItemId));
 		
 		

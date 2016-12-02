@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<title>Delete Product</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+
+	<div class="row">
+
+		<h1>Delete Shopping List</h1>
+		<form method="POST" th:object="${shoppingList}"
+			enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="form-group">
+				<label for="">Shopping List ID</label> <input type="text" name="shoppingListId"
+					class="form-control" placeholder="Shopping List ID"
+					th:field="*{shoppingListId}" /> <span
+					th:if="${#fields.hasErrors('shoppingListId')}" th:errors="*{shoppingListId}">Shopping List
+					ID</span>
+			</div>
+
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text"
+					name="name" class="form-control" placeholder="Name"
+					th:field="*{name}" /> <span
+					th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}">Name Error</span>
+			</div>
+
+			<div class="form-group">
+				<label for="color">Color</label> <input
+					type="text" name="color" class="form-control"
+					placeholder="Color" th:field="*{color}" />
+				<span th:if="${#fields.hasErrors('color')}"
+					th:errors="*{color}">Color</span>
+			</div>
+
+			<div class="form-group">
+				<label for="createdUtc">Created On:</label> <input type="text"
+					name="createdUtc" class="form-control"
+					placeholder="Created On:" th:field="*{createdUtc}" /> <span
+					th:if="${#fields.hasErrors('createdUtc')}"
+					th:errors="*{createdUtc}">Created On:</span>
+			</div>
+			
+			<div class="form-group">
+				<label for="modifiedUtc">Modified On:</label> <input type="text"
+					name="modifiedUtc" class="form-control"
+					placeholder="Modified On:" th:field="*{modifiedUtc}" /> <span
+					th:if="${#fields.hasErrors('modifiedUtc')}"
+					th:errors="*{modifiedUtc}">Modified On:</span>
+			</div>
+
+			<button type="submit" class="btn btn-danger">Delete</button>
+		</form>
+
+	</div>
+
+</body>
+</html>

@@ -8,6 +8,22 @@ insert into java302.users (first_name, last_name, password, email, phone_number,
 insert into java302.users (first_name, last_name, password, email, phone_number, active) values ('Ashley', 'Weston', 'wes123', 'aweston@smoothie.com', '1234165379', true);
 insert into java302.users (first_name, last_name, password, email, phone_number, active) values ('Jason', 'Fredrick', 'pass123', 'jfredrick@smoothie.com', '1234165346', true);
 insert into java302.users (first_name, last_name, password, email, phone_number, active) values ('Evelynn', 'Rogers', 'eve123', 'erogers@smoothie.com', '1234166269', true);
+<<<<<<< HEAD
+=======
+
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'zsmith@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'jwilliams@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'sbjergson@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'ajohns@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'mpabst@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'danderson@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'dcarter@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'aweston@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'jfredrick@smoothie.com'), 'USER');
+insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'erogers@smoothie.com'), 'ADMIN');
+
+insert into java302.shopping_list(user_id, name, color, created_date, modified_date) values ((select id from java302.users where email = 'zsmith@soothie.com'), 'Groceries', 'F00000', 'January 30th, 2016', 'January 31st, 2016');
+>>>>>>> 8c5976689b1b69c2c90022be6a96ade273cb09de
 
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'zsmith@smoothie.com'), 'USER');
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'jwilliams@smoothie.com'), 'USER');

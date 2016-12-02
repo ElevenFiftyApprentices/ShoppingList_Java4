@@ -5,9 +5,12 @@ import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
+<<<<<<< HEAD
+=======
 import org.elevenfifty.shoppinglist.repositories.UserRepository;
 import org.elevenfifty.shoppinglist.security.PermissionService;
 
+>>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +75,28 @@ public class ShoppingListController {
 
 
 
+<<<<<<< HEAD
+	@Secured("ROLE_USER")
+	@RequestMapping("/shoppinglists")
+	public String listContacts(Model model) {
+		long currentUserId = permissionService.findCurrentUserId();
+		model.addAttribute("shoppingList", shoppingListRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
+		return "listContacts";
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping("/contact/{contactId}")
+	public String contact(@PathVariable long contactId, Model model) {
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(contactId));
+		model.addAttribute("permissions", permissionService);
+		return "contact";
+	}
+=======
 }
+>>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
