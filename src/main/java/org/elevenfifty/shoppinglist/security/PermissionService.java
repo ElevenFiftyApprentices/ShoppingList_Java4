@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.beans.User;
+import org.elevenfifty.shoppinglist.repositories.ShoppingListItemRepository;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.elevenfifty.shoppinglist.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class PermissionService {
 
 	@Autowired
 	private ShoppingListRepository shoppingListRepo;
+	
+	@Autowired
+	private ShoppingListItemRepository shoppingListItemRepo;
 
 	private AbstractAuthenticationToken getToken() {
 		return (AbstractAuthenticationToken) getContext().getAuthentication();
@@ -38,7 +42,7 @@ public class PermissionService {
 	}
 
 	public long findCurrentShoppingListId() {
-		List<ShoppingList> lists = shoppingListRepo.findByName(getToken().getName());
+		List<ShoppingList> lists = shoppingListItemRepo.findByName(getToken().getName());
 		return lists != null && !lists.isEmpty() ? lists.get(0).getId() : -1;
 	}
 

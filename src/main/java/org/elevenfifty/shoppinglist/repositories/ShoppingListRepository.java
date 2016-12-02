@@ -17,6 +17,6 @@ public interface ShoppingListRepository extends CrudRepository<ShoppingList, Lon
 	
 	List<User> findByEmail( String email);
 	
-	List<ShoppingList> findAllByUserIdOrderByFirstNameAscLastNameAsc(long UserId);
+	List<ShoppingList> findAllById(long id);
 
 }

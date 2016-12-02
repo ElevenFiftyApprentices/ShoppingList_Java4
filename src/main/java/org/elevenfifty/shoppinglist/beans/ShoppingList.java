@@ -30,8 +30,8 @@ public class ShoppingList {
 	// private String password;
 	private boolean active;
 
-	@OneToMany(mappedBy = "shoppingList")
-	private List<ShoppingListItem> listItems;
+//	@OneToMany(mappedBy = "shoppingList")
+//	private List<ShoppingListItem> listItems;
 
 	protected ShoppingList() {
 		active = true;
