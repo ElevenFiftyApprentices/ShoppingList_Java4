@@ -14,7 +14,7 @@ public interface ShoppingListItemRepository extends CrudRepository<ShoppingListI
 	
 	List<ShoppingList> findByName(String name);
 
-	List<ShoppingListItem> findAllByShoppingListIdOrderByPriotyAscContentsAsc(long shoppingListId);
+	List<ShoppingListItem> findAllByShoppingListIdOrderByPriorityAscContentsAsc(long shoppingListId);
 	
 	
 }

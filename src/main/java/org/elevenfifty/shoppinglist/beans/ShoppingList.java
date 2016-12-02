@@ -20,6 +20,7 @@ public class ShoppingList {
 	private long id;
 
 	private long userId;
+	private String email;
 
 	private String name;
 	private String color;
@@ -113,6 +114,14 @@ public class ShoppingList {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }

@@ -23,6 +23,7 @@ public class ShoppingListItem {
 //	@JoinColumn(name = "shopping_list_id")
 //	private ShoppingList shoppingList;
 	private long shoppingListId;
+	private String name;
 	
 	@Size(max = 100)
 	private String contents;
@@ -144,6 +145,18 @@ public class ShoppingListItem {
 
 	public void setShoppingListId(long shoppingListId) {
 		this.shoppingListId = shoppingListId;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	
