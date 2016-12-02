@@ -1,5 +1,6 @@
 package org.elevenfifty.shoppinglist;
 
+
 import org.h2.server.web.WebServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,7 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 
 
-@SpringBootApplication 
+@SpringBootApplication
 @EnableJpaRepositories("org.elevenfifty.shoppinglist.repositories")
 @EnableAutoConfiguration
 public class Application {
@@ -26,16 +27,17 @@ public class Application {
 	}
 	
 	// Adds support for the H2 console via the application
-		@Bean
-		ServletRegistrationBean h2servletRegistration() {
-			ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
-			registrationBean.addUrlMappings("/console/*");
-			return registrationBean;
-		}
+			@Bean
+			ServletRegistrationBean h2servletRegistration() {
+				ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet());
+				registrationBean.addUrlMappings("/console/*");
+				return registrationBean;
+			}
 
-		@Bean
-		public SpringSecurityDialect securityDialect() {
-			return new SpringSecurityDialect();
-		}
+			@Bean
+			public SpringSecurityDialect securityDialect() {
+				return new SpringSecurityDialect();
+			}
+
 
 }

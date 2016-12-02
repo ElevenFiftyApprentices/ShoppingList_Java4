@@ -41,7 +41,7 @@ public class ShoppingListController {
 	public String ShoppingList(Model model)
 	{
 		long currentUserId = permissionService.findCurrentUserId(); 
-		model.addAttribute("contacts", shoppingListRepo.findAllByUserIdOrderByFirstNameAscLastNameAsc(currentUserId));
+		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
 		return "shoppingLists";
 	}
 

@@ -1,12 +1,14 @@
 package org.elevenfifty.shoppinglist.beans;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,9 @@ public class ShoppingList {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
 	private long userId;
+	private String email;
 
 	private String name;
 	private String color;
@@ -27,7 +31,11 @@ public class ShoppingList {
 	// private String password;
 	private boolean active;
 
+//	@OneToMany(mappedBy = "shoppingList")
+//	private List<ShoppingListItem> listItems;
+
 	protected ShoppingList() {
+		active = true;
 	}
 
 	public ShoppingList(long userId) {
@@ -106,6 +114,14 @@ public class ShoppingList {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
