@@ -1,67 +1,51 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layouts/basic">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
-<title>Shopping List Create</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Create Contact</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <style type="text/css">
+    	.field {
+    		display: block;
+    		margin-bottom: 5px;
+    	}
+    	
+    	.field input, .field select {
+    		float: right;
+    		width: 170px;
+    	}
+    	form {
+    		width: 290px;
+    	}
+    </style>
 </head>
 <body layout:fragment="content">
-
-	<div class="row">
-
-		<h1>Create Shopping List</h1>
-
-		<form method="POST" th:object="${shoppingList}"
-			enctype="multipart/form-data">
-			<input type="hidden" th:field="*{id}" />
-
-			<div class="form-group">
-				<label for="">Shopping List ID</label> <input type="text"
-					name="shoppingListId" class="form-control"
-					placeholder="shoppingList ID" th:field="*{shoppingListId}" /> <span
-					th:if="${#fields.hasErrors('shoppingListId')}"
-					th:errors="*{shoppingListId}">Shopping List ID</span>
-			</div>
-
-			<div class="form-group">
-				<label for="shoppingListName">Shopping List Name</label> <input
-					type="text" name="shoppingListName" class="form-control"
-					placeholder="shoppingListName" th:field="*{shoppingListName}" />
-				<span th:if="${#fields.hasErrors('shoppingListName')}"
-					th:errors="*{shoppingListName}">Shopping List Name</span>
-			</div>
-
-			<div class="form-group">
-				<label for="shoppingListColor">Shopping List
-					Color</label> <input type="text" name="shoppingListColor"
-					class="form-control" placeholder="shoppingListColor"
-					th:field="*{shoppingListColor}" /> <span
-					th:if="${#fields.hasErrors('shoppingListColor')}"
-					th:errors="*{shoppingListColor}">Shopping List
-					Color</span>
-			</div>
-
-			<div class="form-group">
-				<label for="shoppingListCreatedUtc">List Created On:</label> <input type="text"
-					name="shoppingListCreatedUtc" class="form-control"
-					placeholder="shoppingListCreatedUtc" th:field="*{shoppingListCreatedUtc}" />
-				<span th:if="${#fields.hasErrors('shoppingListCreatedUtc')}"
-					th:errors="*{shoppingListCreatedUtc}">List Created On:</span>
-			</div>
+	<h1>Shopping List</h1>
+	<form th:action="@{|/shoppingList/shoppingList_create|}" enctype="multipart/form-data" method="POST">
+		<input name="userId" type="hidden" th:value="${shoppingList.userId}"/>
 			
-			<div class="form-group">
-				<label for="shoppingListModifiedUtc">List Modified On:</label> <input type="text"
-					name="shoppingListModifiedUtc" class="form-control"
-					placeholder="shoppingListModifiedUtc" th:field="*{shoppingListModifiedUtc}" />
-				<span th:if="${#fields.hasErrors('shoppingListModifiedUtc')}"
-					th:errors="*{shoppingListModifiedUtc}">List Modified On:</span>
-			</div>
-
-			<button type="submit" class="btn btn-success">Submit</button>
-		</form>
-
-	</div>
-
+		<div class="field">
+			<label for="name">List Name</label>
+			<input name="name" type="text" th:value="${shoppingList.name}"/>
+		</div>
+		
+		<div class="field">
+			<label for="color">List Color</label>
+			<input name="color" type="text" th:value="${shoppingList.color}"/>
+		</div>
+		
+		<div class="field">
+			<label for="createdUtc">Date Created</label>
+			<input name="createdUtc" type="text" th:value="${shoppingList.createdUtc}"/>
+		</div>
+		
+		<div class="field">
+			<label for="modifiedUtc">Date Modified</label>
+			<input name="modifiedUtc" type="text" th:value="${shoppingList.modifiedUtc}"/>
+		</div>
+		
+		<input type="submit" th:value="Create"/>
+		<a href="/shoppingLists" th:href="@{|/shoppingLists|}">Back</a>
+	</form>
 </body>
 </html>

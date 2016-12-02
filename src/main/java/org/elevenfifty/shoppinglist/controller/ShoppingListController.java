@@ -4,6 +4,8 @@ import java.security.Permission;
 import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
+import org.elevenfifty.shoppinglist.beans.User;
+import org.elevenfifty.shoppinglist.beans.UserRole;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.elevenfifty.shoppinglist.repositories.UserRepository;
 import org.elevenfifty.shoppinglist.security.PermissionService;
@@ -21,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import static org.elevenfifty.shoppinglist.security.Role.ROLE_USER;
 import static org.h2.util.StringUtils.isNullOrEmpty;
 
 @Controller
@@ -44,7 +48,23 @@ public class ShoppingListController {
 		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
 		return "shoppingList/shoppingLists";
 	}
+	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
+	public String createShoppingList(Model model) {
+		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+		
+		return "shoppingList/shoppingList_create";
+	}
+	
+	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.POST)
+	public String createShoppingList(@ModelAttribute ShoppingList shoppingList,
+	    Model model) {
 
+		log.info(shoppingList.toString());
+		
+		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
+		
+		return "shoppingList/shoppingList_create";
+	}
 
 
 }
