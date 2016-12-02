@@ -26,8 +26,9 @@ public class ShoppingListItemController {
 	private PermissionService permissionService;
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}", method = RequestMethod.GET)
-	public String shoppingListItems(@PathVariable long shoppingListId, Model model ){
-		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAllByShoppingListIdOrderByPriorityAscContentsAsc(shoppingListId));
+	public String shoppingListItems(Model model ){
+		long currentShoppingListId = permissionService.findCurrentShoppingListId();
+		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAllByShoppingListIdOrderByPriotyAscContentsAsc(currentShoppingListId));
 		
 		return "shoppingListItems";		
 	}

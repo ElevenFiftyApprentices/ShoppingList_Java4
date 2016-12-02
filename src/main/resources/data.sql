@@ -20,8 +20,8 @@ insert into java302.user_roles (user_id, role) values ((select id from java302.u
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'jfredrick@smoothie.com'), 'USER');
 insert into java302.user_roles (user_id, role) values ((select id from java302.users where email = 'erogers@smoothie.com'), 'ADMIN');
 
-insert into java302.shopping_list(user_id, name, color, created_date, modified_date) values ((select id from java302.users where email = 'zsmith@soothie.com'), 'Groceries', 'F00000', 'January 30th, 2016', 'January 31st, 2016');
+insert into java302.shopping_list(name, color, created_date, modified_date,user_id) values ('Groceries', 'F00000', 'January 30th, 2016', 'January 31st, 2016',(select id from java302.users where email = 'zsmith@soothie.com'));
 
 insert into java302.shopping_list_item(shopping_list_id, contents, priority, created_date, modified_date) values((select id from java302.shopping_list where name = 'Groceries'), 'Bacon', '1', 'January 30th, 2016', 'January 31st, 2016');
 
-insert into java302.notes (shopping_list_item_id, body, created_date, modified_date) values((select id from java302.shopping_list_item where name = 'Bacon'), 'Ekrich Farm', 'January 30th, 2016', 'January 31st, 2016');
+--insert into java302.notes (shopping_list_item_id, body, created_date, modified_date) values((select id from java302.shopping_list_item where name = 'Bacon'), 'Ekrich Farm', 'January 30th, 2016', 'January 31st, 2016');

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
+<head>
+   <title>Getting Started: Serving Web Content</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   
+   <style type="text/css">
+.btn-primary {
+    background: #fa25de;
+    color: #ffffff;
+}
+</style>
+</head>
+<body layout:fragment="content">
+
+<div class="row">
+
+<h1>Edit PRODUCT Details</h1>
+
+<form method="POST" th:object="${product}" enctype="multipart/form-data">
+	<input type="hidden" th:field="*{id}"/>
+
+  <div class="form-group">
+    <label for="">Product ID</label>
+    <input type="text" name="productId" class="form-control" placeholder="Product ID" th:field="*{productId}" />
+  	<span th:if="${#fields.hasErrors('productId')}" th:errors="*{productId}">Product ID</span>
+  </div>
+
+  <div class="form-group">
+    <label for="productName">Product Name</label>
+    <input type="text" name="productName" class="form-control" placeholder="Product Name" th:field="*{productName}" />
+  	<span th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Product Name Error</span>
+  </div>
+
+  <div class="form-group">
+    <label for="productManufacturer">Product Manufacturer</label>
+    <input type="text" name="productManufacturer" class="form-control" placeholder="ProductManufacturer" th:field="*{productManufacturer}" />
+    <span th:if="${#fields.hasErrors('productManufacturer')}" th:errors="*{productManufacturer}">Product Manufacturer</span>
+  </div>
+
+  <div class="form-group">
+    <label for="productPrice">Price</label>
+    <input type="text" name="productPrice" class="form-control" placeholder="Product Price" th:field="*{productPrice}" />
+  	<span th:if="${#fields.hasErrors('productPrice')}" th:errors="*{productPrice}">Product Price</span>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+  
+</body>
+</html>

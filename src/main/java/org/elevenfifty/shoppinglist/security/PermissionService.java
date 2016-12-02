@@ -55,7 +55,6 @@ public class PermissionService {
 		return hasRole(ROLE_ADMIN) || (hasRole(ROLE_USER) && findCurrentUserId() == userId);
 	}
 
-
 	public String getCurrentEmail() {
 		return getToken().getName();
 	}
