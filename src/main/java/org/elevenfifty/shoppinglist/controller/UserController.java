@@ -49,7 +49,7 @@ public class UserController
 		}
 
 		model.addAttribute("permissions", permissionService);
-		return "profile";
+		return "users/profile";
 	}
 
 	@RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.GET)
@@ -58,11 +58,11 @@ public class UserController
 		
 		if (!permissionService.canAccessUser(userId)) {
 			log.warn("Cannot allow user to edit " + userId);
-			return "profile";
+			return "users/profile";
 		}
 
 		
-		return "profileEdit";
+		return "users/profileEdit";
 	}
 
 	@RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.POST)
@@ -74,7 +74,7 @@ public class UserController
 
 		if (!permissionService.canAccessUser(userId)) {
 			log.warn("Cannot allow user to edit " + userId);
-			return "profile";
+			return "users/profile";
 		}
 		
 		log.debug("Saving user " + user);
@@ -99,7 +99,7 @@ public class UserController
 	public String createUser(Model model) {
 		model.addAttribute("user", new User());
 		
-		return "userCreate";
+		return "users/userCreate";
 	}
 	
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
