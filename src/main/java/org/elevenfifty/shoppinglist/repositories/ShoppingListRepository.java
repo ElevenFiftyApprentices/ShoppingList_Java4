@@ -15,7 +15,7 @@ public interface ShoppingListRepository extends CrudRepository<ShoppingList, Lon
 
 	ShoppingList findByUserIdAndId(long userId, long id);
 	
-	List<User> findByEmail( String email);
+	List<User> findByEmail(String email);
 	
 	List<ShoppingList> findAllById(long id);
 

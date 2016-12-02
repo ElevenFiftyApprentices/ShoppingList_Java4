@@ -26,8 +26,8 @@ public class ShoppingList {
 	private String color;
 
 	@Column(unique = true)
-	private String createdUtc;
-	private String modifiedUtc;
+	private String created_utc;
+	private String modified_utc;
 
 //	@OneToMany(mappedBy = "shoppingList")
 //	private List<ShoppingListItem> listItems;
@@ -39,18 +39,18 @@ public class ShoppingList {
 		this.userId = userId;
 	}
 
-	public ShoppingList(String name, String color, String createdUtc, String modifiedUtc, long userId) {
+	public ShoppingList(String name, String color, String created_utc, String modified_utc, long userId) {
 		this.name = name;
 		this.color = color;
-		this.createdUtc = createdUtc;
-		this.modifiedUtc = modifiedUtc;
+		this.created_utc = created_utc;
+		this.modified_utc = modified_utc;
 		this.userId = userId;
 	}	
 	
 	@Override
 	public String toString() {
 		return "ShoppingList [id=" + id + ", userId=" + userId + ", email=" + email + ", name=" + name + ", color="
-				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
+				+ color + ", created_utc=" + created_utc + ", modified_utc=" + modified_utc + "]";
 	}
 
 	public long getId() {
@@ -85,22 +85,21 @@ public class ShoppingList {
 		this.color = color;
 	}
 
-	public String getCreatedUtc() {
-		return createdUtc;
+	public String getCreated_utc() {
+		return created_utc;
 	}
 
-	public void setCreatedUtc(String createdUtc) {
-		this.createdUtc = createdUtc;
+	public void setCreated_utc(String created_utc) {
+		this.created_utc = created_utc;
 	}
 
-	public String getModifiedUtc() {
-		return modifiedUtc;
+	public String getModified_utc() {
+		return modified_utc;
 	}
 
-	public void setModifiedUtc(String modifiedUtc) {
-		this.modifiedUtc = modifiedUtc;
+	public void setModified_utc(String modified_utc) {
+		this.modified_utc = modified_utc;
 	}
-
 
 	public String getEmail() {
 		return email;
