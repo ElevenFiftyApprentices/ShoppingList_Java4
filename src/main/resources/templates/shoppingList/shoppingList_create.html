@@ -25,37 +25,37 @@
 			</div>
 
 			<div class="form-group">
-				<label for="shoppingListName">Shopping List Name</label> <input
-					type="text" name="shoppingListName" class="form-control"
-					placeholder="shoppingListName" th:field="*{shoppingListName}" />
-				<span th:if="${#fields.hasErrors('shoppingListName')}"
-					th:errors="*{shoppingListName}">Shopping List Name</span>
+				<label for="name">Name</label> <input
+					type="text" name="name" class="form-control"
+					placeholder="mame" th:field="*{name}" />
+				<span th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}">Name</span>
 			</div>
 
 			<div class="form-group">
-				<label for="shoppingListColor">Shopping List
-					Color</label> <input type="text" name="shoppingListColor"
-					class="form-control" placeholder="shoppingListColor"
-					th:field="*{shoppingListColor}" /> <span
-					th:if="${#fields.hasErrors('shoppingListColor')}"
-					th:errors="*{shoppingListColor}">Shopping List
+				<label for="color">
+					Color</label> <input type="text" name="color"
+					class="form-control" placeholder="color"
+					th:field="*{color}" /> <span
+					th:if="${#fields.hasErrors('color')}"
+					th:errors="*{color}">
 					Color</span>
 			</div>
 
 			<div class="form-group">
-				<label for="shoppingListCreatedUtc">List Created On:</label> <input type="text"
-					name="shoppingListCreatedUtc" class="form-control"
-					placeholder="shoppingListCreatedUtc" th:field="*{shoppingListCreatedUtc}" />
-				<span th:if="${#fields.hasErrors('shoppingListCreatedUtc')}"
-					th:errors="*{shoppingListCreatedUtc}">List Created On:</span>
+				<label for="created_utc">List Created On:</label> <input type="text"
+					name="created_utc" class="form-control"
+					placeholder="created_utc" th:field="*{created_utc}" />
+				<span th:if="${#fields.hasErrors('created_utc')}"
+					th:errors="*{created_utc}">List Created On:</span>
 			</div>
 			
 			<div class="form-group">
-				<label for="shoppingListModifiedUtc">List Modified On:</label> <input type="text"
-					name="shoppingListModifiedUtc" class="form-control"
-					placeholder="shoppingListModifiedUtc" th:field="*{shoppingListModifiedUtc}" />
-				<span th:if="${#fields.hasErrors('shoppingListModifiedUtc')}"
-					th:errors="*{shoppingListModifiedUtc}">List Modified On:</span>
+				<label for="modified_utc">List Modified On:</label> <input type="text"
+					name="modified_utc" class="form-control"
+					placeholder="modified_utc" th:field="*{modified_utc}" />
+				<span th:if="${#fields.hasErrors('modified_utc')}"
+					th:errors="*{modified_utc}">List Modified On:</span>
 			</div>
 
 			<button type="submit" class="btn btn-success">Submit</button>

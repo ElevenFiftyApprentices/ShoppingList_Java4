@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
-<<<<<<< HEAD
-=======
+
 import org.elevenfifty.shoppinglist.repositories.UserRepository;
 import org.elevenfifty.shoppinglist.security.PermissionService;
 
->>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,9 +71,6 @@ public class ShoppingListController {
 		return null;
 	}
 
-
-
-<<<<<<< HEAD
 	@Secured("ROLE_USER")
 	@RequestMapping("/shoppinglists")
 	public String listContacts(Model model) {
@@ -91,12 +86,5 @@ public class ShoppingListController {
 		model.addAttribute("permissions", permissionService);
 		return "contact";
 	}
-=======
+
 }
->>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 1a887e8e7df8bcb884c1216c1170de8e4e9365cd
