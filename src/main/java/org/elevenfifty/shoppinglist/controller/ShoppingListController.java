@@ -42,7 +42,7 @@ public class ShoppingListController {
 	{
 		long currentUserId = permissionService.findCurrentUserId(); 
 		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
-		return "shoppingLists";
+		return "shoppingList/shoppingLists";
 	}
 
 

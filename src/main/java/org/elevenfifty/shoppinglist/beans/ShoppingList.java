@@ -26,38 +26,31 @@ public class ShoppingList {
 	private String color;
 
 	@Column(unique = true)
-	private Date createdUtc;
-	private Date modifiedUtc;
-	// private String password;
-	private boolean active;
+	private String createdUtc;
+	private String modifiedUtc;
 
 //	@OneToMany(mappedBy = "shoppingList")
 //	private List<ShoppingListItem> listItems;
 
 	protected ShoppingList() {
-		active = true;
 	}
 
 	public ShoppingList(long userId) {
 		this.userId = userId;
-		this.active = true;
 	}
 
-	public ShoppingList(String name, String color, Date createdUtc, Date modifiedUtc, String password, boolean active,
-			long userId) {
+	public ShoppingList(String name, String color, String createdUtc, String modifiedUtc, long userId) {
 		this.name = name;
 		this.color = color;
 		this.createdUtc = createdUtc;
 		this.modifiedUtc = modifiedUtc;
-		// this.password = password;
-		this.active = active;
 		this.userId = userId;
-	}
-
+	}	
+	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", color=" + color + ", createdUtc=" + createdUtc
-				+ ", modifiedUtc=" + modifiedUtc + active + "]";
+		return "ShoppingList [id=" + id + ", userId=" + userId + ", email=" + email + ", name=" + name + ", color="
+				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
 	}
 
 	public long getId() {
@@ -92,29 +85,22 @@ public class ShoppingList {
 		this.color = color;
 	}
 
-	public Date getCreatedUtc() {
+	public String getCreatedUtc() {
 		return createdUtc;
 	}
 
-	public void setCreatedUtc(Date createdUtc) {
+	public void setCreatedUtc(String createdUtc) {
 		this.createdUtc = createdUtc;
 	}
 
-	public Date getModifiedUtc() {
+	public String getModifiedUtc() {
 		return modifiedUtc;
 	}
 
-	public void setModifiedUtc(Date modifiedUtc) {
+	public void setModifiedUtc(String modifiedUtc) {
 		this.modifiedUtc = modifiedUtc;
 	}
 
-	public boolean isActive() {
-		return active;
-	}
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
 
 	public String getEmail() {
 		return email;

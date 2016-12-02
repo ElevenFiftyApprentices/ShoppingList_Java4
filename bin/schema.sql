@@ -6,8 +6,9 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list (
 	user_id INT UNSIGNED NOT NULL,
 	name  VARCHAR(45) NOT NULL,
 	color VARCHAR(20) NOT NULL,
-	created_date VARCHAR(45) NOT NULL,
-	modified_date VARCHAR(45) NULL,
+	created_utc VARCHAR(45) NOT NULL,
+	modified_utc VARCHAR(45) NULL,
+	email VARCHAR(128) NULL,
 	PRIMARY KEY (id));
 	
 CREATE TABLE IF NOT EXISTS java302.shopping_list_item (
@@ -16,8 +17,8 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list_item (
 	contents VARCHAR(100) NOT NULL,
 	priority INT NOT NULL,
 	is_checked tinyint(1) NOT NULL DEFAULT 0,	
-	created_date VARCHAR(45) NOT NULL,
-	modified_date VARCHAR(45) NULL,
+	created_utc VARCHAR(45) NOT NULL,
+	modified_utc VARCHAR(45) NULL,
 	PRIMARY KEY (id));
 	
 --CREATE TABLE IF NOT EXISTS java302.notes(
