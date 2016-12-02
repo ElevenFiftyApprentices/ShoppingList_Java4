@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import static org.h2.util.StringUtils.isNullOrEmpty;
 
 @Controller
@@ -43,6 +44,30 @@ public class ShoppingListController {
 		long currentUserId = permissionService.findCurrentUserId(); 
 		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
 		return "shoppingList/shoppingLists";
+	}
+	
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/shoppingList/create", method = RequestMethod.GET)
+	public String createShoppingList(Model model) {
+		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+
+		return "shoppingListCreate";
+	}
+
+	@Secured("ROLE_USER")
+	@RequestMapping(value = "/shoppingList/create", method = RequestMethod.POST)
+	public String createShoppingList(@ModelAttribute ShoppingList shoppingList, @RequestParam("file") MultipartFile file,
+			Model model) {
+
+		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
+
+		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
+	}
+
+	private String profileSave(org.elevenfifty.shoppinglist.beans.ShoppingList savedShoppingList, long id, boolean b,
+			MultipartFile file, Model model) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

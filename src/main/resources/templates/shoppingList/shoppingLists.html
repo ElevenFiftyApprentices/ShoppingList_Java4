@@ -7,20 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- <link rel="stylesheet" type="text/css" href="../css/bettysLogo.css" th:href="@{/css/bettysLogo.css}" /> -->
 <style type="text/css">
-.table-hover thead tr:hover th, 
- .table-hover tbody tr:hover td {
-        background-color: #fcccf6;
+.table-hover thead tr:hover th, .table-hover tbody tr:hover td {
+	background-color: #fcccf6;
 }
 
 .btn-primary {
-    background: #fa25de;
-    color: #ffffff;
+	background: #fa25de;
+	color: #ffffff;
 }
 </style>
 </head>
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
-	<a class="btn btn-primary" href="/" th:href="@{|/product/create|}" role="button">Create New Shopping List</a>
+	<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/create|}"
+		role="button">Create New Shopping List</a>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -32,15 +32,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="s : ${shoppingLists}">			 
+			<tr th:each="s : ${shoppingLists}">
 				<td th:text="${s.Id}"></td>
 				<td th:text="${s.Name}"></td>
 				<td th:text="${s.Color}"></td>
 				<td th:text="${s.CreatedUtc}"></td>
 				<td th:text="${s.ModifiedUtc}"></td>
-				<td><a class="btn btn-default" href="/" th:href="@{|/shoppingList/${s.id}}" role="button">View</a></td>
-				<td><a class="btn btn-success" href="/" th:href="@{|/shoppingList/${s.id}/edit|}" role="button">Edit</a></td>
-				<td><a class="btn btn-danger" href="/" th:href="@{|/shoppingList/${s.id}/delete|}" role="button">Delete</a></td>
+				<td><a class="btn btn-default" href="/"
+					th:href="@{|/shoppingList/${s.id}}" role="button">View</a></td>
+				<td><a class="btn btn-success" href="/"
+					th:href="@{|/shoppingList/${s.id}/edit|}" role="button">Edit</a></td>
+				<td><a class="btn btn-danger" href="/"
+					th:href="@{|/shoppingList/${s.id}/delete|}" role="button">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
