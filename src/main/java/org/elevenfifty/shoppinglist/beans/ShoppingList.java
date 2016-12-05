@@ -42,8 +42,8 @@ public class ShoppingList {
 	protected ShoppingList() {
 	}
 
-	public ShoppingList(long userId) {
-		
+	public ShoppingList(User userId) {
+		this.user = userId;
 	}
 
 	public ShoppingList(String name, String color, String createdUtc, String modifiedUtc, long userId) {
@@ -66,8 +66,6 @@ public class ShoppingList {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	
 
 	public String getName() {
 		return name;
