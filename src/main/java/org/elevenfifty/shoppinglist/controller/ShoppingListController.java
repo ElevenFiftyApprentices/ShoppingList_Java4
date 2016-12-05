@@ -33,7 +33,7 @@ public class ShoppingListController {
 
 	@Autowired
 	private ShoppingListRepository shoppingListRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
@@ -42,31 +42,43 @@ public class ShoppingListController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/shoppingLists")
-	public String ShoppingList(Model model)
-	{
-		long currentUserId = permissionService.findCurrentUserId(); 
+	public String ShoppingList(Model model) {
+		long currentUserId = permissionService.findCurrentUserId();
 		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
 		return "shoppingList/shoppingLists";
 	}
+
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
 	public String createShoppingList(Model model) {
 		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
-		
-		return "shoppingList/shoppingList_create";
+
+		return "shoppingList_create";
 	}
-	
+
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.POST)
 	public String createShoppingList(@ModelAttribute ShoppingList shoppingList,
-	    Model model) {
+			@RequestParam("file") MultipartFile file, Model model) {
 
-		log.info(shoppingList.toString());
-		
 		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
-		
-		return "shoppingList/shoppingList_create";
+
+		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
 	}
 
+	@RequestMapping(value = "/shoppingList/shoppingList_edit", method = RequestMethod.GET)
+	public String editShoppingList(Model model) {
+		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+
+		return "shoppingList/shoppingList_edit";
+	}
+
+	@RequestMapping(value = "/shoppingList/shoppingList_edit", method = RequestMethod.POST)
+	public String editShoppingList(@ModelAttribute ShoppingList shoppingList,
+			@RequestParam("file") MultipartFile file, Model model) {
+
+		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
+
+		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
+	}
 
 }
-
-
