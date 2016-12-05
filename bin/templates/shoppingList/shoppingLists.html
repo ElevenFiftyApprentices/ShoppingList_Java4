@@ -38,6 +38,8 @@
 				<td th:text="${s.CreatedUtc}"></td>
 				<td th:text="${s.ModifiedUtc}"></td>
 				<td th:text="${s.Id}"></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}|}">View</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
 				<td><button type="button">Delete</button></td>
 				
 			</tr>

@@ -41,9 +41,9 @@ public class ShoppingListController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping("/contact/{contactId}")
-	public String shoppingList(@PathVariable long contactId, Model model) {
-		model.addAttribute("contact", shoppingListRepo.findOne(contactId));
+	@RequestMapping("/shoppingList/{userId}")
+	public String shoppingList(@PathVariable long userId, Model model) {
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(userId));
 		model.addAttribute("permissions", permissionService);
 		return "shoppingList/shoppingList";
 	}
@@ -61,6 +61,7 @@ public class ShoppingListController {
 		model.addAttribute("message", "Contact " + shoppingList.getEmail() + " saved.");
 		return shoppingList(shoppingListId, model);
 	}
+	
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
 	public String createShoppingList(Model model) {
 		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));

@@ -1,27 +1,23 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
-    <title>Create Contact</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <style type="text/css">
-    	.field {
-    		display: block;
-    		margin-bottom: 5px;
-    	}
-    	
-    	.field input, .field select {
-    		float: right;
-    		width: 170px;
-    	}
-    	form {
-    		width: 290px;
-    	}
-    </style>
+   <title>Getting Started: Serving Web Content</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   
+   <style type="text/css">
+.btn-primary {
+    background: #fa25de;
+    color: #ffffff;
+}
+</style>
 </head>
 <body layout:fragment="content">
-	<h1>Shopping List</h1>
-	<form method="POST"  th:object="${shoppingList}" enctype="multipart/form-data">
+
+<div class="row">
+
+<h1>Edit PRODUCT Details</h1>
+
+<form method="POST"  th:object="${shoppingList}" enctype="multipart/form-data">
 			
 			<div class="form-group">
 				<label for="name">Name</label> 
@@ -36,13 +32,15 @@
 			</div>
 			
 			<div class="form-group"> 
-				<label for="createdUtc">Date Created</label> 
-				<input type="text" name="createdUtc" class="form-control" placeholder="Date Created" th:field="*{createdUtc}"/>
-				<span th:if="${#fields.hasErrors('createdUtc')}" th:errors="*{createdUtc}">Date Error</span>
+				<label for="modifiedUtc">Date Modified</label> 
+				<input type="text" name="modifiedUtc" class="form-control" placeholder="Date Created" th:field="*{modifiedUtc}"/>
+				<span th:if="${#fields.hasErrors('modifiedUtc')}" th:errors="*{modifiedUtc}">Date Error</span>
 			</div>						 
 			 
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
-	
+
+</div>
+  
 </body>
 </html>

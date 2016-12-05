@@ -12,27 +12,25 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>Product ID</th>
-					<th>Product Name</th>
-					<th>Manufacturer</th>
-					<th>Price</th>
-					<th>&nbsp;</th>
-					<th>&nbsp;</th>
+					<th>List Name</th>
+					<th>Color</th>
+					<th>Creation Date</th>
+					<th>Modified Date</th>
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="p : ${product}">
-					<td th:text="${p.productId}"></td>
-					<td th:text="${p.productName}"></td>
-					<td th:text="${p.productManufacturer}"></td>
-					<td th:text="${p.productPrice}"></td>
-					<td><a href="/" th:href="@{|/product/${product.id}/edit|}">Edit</a></td>
+				<tr th:each="s : ${shoppingList}">
+					<td th:text="${s.name}"></td>
+					<td th:text="${s.color}"></td>
+					<td th:text="${s.createdUtc}"></td>
+					<td th:text="${s.modifiedUtc}"></td>
+					<td><a href="/" th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>
-		<div th:unless="${product}">
-			<h1>Product not found</h1>
+		<div th:unless="${shoppingList}">
+			<h1>List not found</h1>
 		</div>
 	</div>
 </body>
