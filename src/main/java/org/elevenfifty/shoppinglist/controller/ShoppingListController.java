@@ -53,9 +53,10 @@ public class ShoppingListController {
 	public String createShoppingList(Model model) {
 		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
 
-		return "shoppingList_create";
+		return "shoppingList/shoppingList_create";
 	}
 
+	@Secured("ROLE_USER")
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.POST)
 	public String createShoppingList(@ModelAttribute ShoppingList shoppingList,
 			@RequestParam("file") MultipartFile file, Model model) {
@@ -73,8 +74,8 @@ public class ShoppingListController {
 	}
 
 	@RequestMapping(value = "/shoppingList/shoppingList_edit", method = RequestMethod.POST)
-	public String editShoppingList(@ModelAttribute ShoppingList shoppingList,
-			@RequestParam("file") MultipartFile file, Model model) {
+	public String editShoppingList(@ModelAttribute ShoppingList shoppingList, @RequestParam("file") MultipartFile file,
+			Model model) {
 
 		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
 
