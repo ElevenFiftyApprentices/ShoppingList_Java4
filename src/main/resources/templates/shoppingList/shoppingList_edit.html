@@ -17,8 +17,8 @@
 
 <h1>Edit PRODUCT Details</h1>
 
-<form th:action="@{|/shoppingList/${shoppingList.id}/edit|}" enctype="multipart/form-data" method="POST">
-		<input name="userId" type="hidden" th:value="${shoppingList.userId}"/>
+<form th:action="@{|/shoppingList/${shoppingList.id}|}" enctype="multipart/form-data" method="POST">
+		<input name="id" type="hidden" th:value="${shoppingList.id}"/>
 		
 			<div class="field">
 				<label for="name">List Name</label>
