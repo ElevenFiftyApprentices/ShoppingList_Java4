@@ -1,9 +1,12 @@
 package org.elevenfifty.shoppinglist.beans;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +16,10 @@ public class User
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	@OneToMany(mappedBy="user")
+	private List <ShoppingList> shoppingLists;
+	
 	private String firstName;
 	private String lastName;
 	private String email;

@@ -19,10 +19,10 @@ public class ShoppingListItem {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "shopping_list_id")
-//	private ShoppingList shoppingList;
-	private long shoppingListId;
+	@ManyToOne
+	@JoinColumn(name = "shopping_list_id")
+	private ShoppingList shoppingList;
+	
 	private String name;
 	
 	@Size(max = 100)
@@ -52,7 +52,7 @@ public class ShoppingListItem {
 //		this.shoppingList = shoppingList;
 //	}
 	public ShoppingListItem(long shoppingListId){
-		this.shoppingListId = shoppingListId;
+		
 	}
 
 
@@ -79,7 +79,7 @@ public class ShoppingListItem {
 
 	@Override
 	public String toString() {
-		return "ShoppingListItem [id=" + id + ", shoppingListId=" + shoppingListId + ", contents=" + contents
+		return "ShoppingListItem [id=" + id +  ", contents=" + contents
 				+ ", priority=" + priority + ", isChecked=" + isChecked + ", createdUtc=" + createdUtc
 				+ ", modifiedUtc=" + modifiedUtc + "]";
 	}
@@ -137,16 +137,7 @@ public class ShoppingListItem {
 
 
 
-	public long getShoppingListId() {
-		return shoppingListId;
-	}
-
-
-
-	public void setShoppingListId(long shoppingListId) {
-		this.shoppingListId = shoppingListId;
-	}
-
+	
 
 
 	public String getName() {

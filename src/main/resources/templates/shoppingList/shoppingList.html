@@ -20,12 +20,12 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="s : ${shoppingList}">
-					<td th:text="${s.name}"></td>
-					<td th:text="${s.color}"></td>
-					<td th:text="${s.createdUtc}"></td>
-					<td th:text="${s.modifiedUtc}"></td>
-					<td><a href="/" th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
+				<tr th:each="shoppingList : ${shoppingList}">
+					<td th:text="${shoppingList.name}"></td>
+					<td th:text="${shoppingList.color}"></td>
+					<td th:text="${shoppingList.createdUtc}"></td>
+					<td th:text="${shoppingList.modifiedUtc}"></td>
+					<td><a href="/" th:href="@{|/shoppingList/${shoppingList.id}/shoppingList_edit|}">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>
