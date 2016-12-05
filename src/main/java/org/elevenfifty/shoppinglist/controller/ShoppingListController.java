@@ -41,9 +41,9 @@ public class ShoppingListController {
 	}
 	
 	@Secured("ROLE_USER")
-	@RequestMapping("/shoppingList/{userId}")
-	public String shoppingList(@PathVariable long userId, Model model) {
-		model.addAttribute("shoppingList", shoppingListRepo.findOne(userId));
+	@RequestMapping("/shoppingList/{shoppingListId}")
+	public String shoppingList(@PathVariable long shoppingListId, Model model) {
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(shoppingListId));
 		model.addAttribute("permissions", permissionService);
 		return "shoppingList/shoppingList";
 	}
@@ -51,14 +51,14 @@ public class ShoppingListController {
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/shoppingList_edit", method = RequestMethod.GET)
 	public String editShoppingList(@PathVariable long shoppingListId, Model model){
 		model.addAttribute("shoppingList", shoppingListRepo.findOne(shoppingListId));
-		return "shoppingList_edit";
+		return "shoppingList/shoppingList_edit";
 	}
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/shoppingList_edit", method = RequestMethod.POST)
-	public String shoppingListSave(@ModelAttribute ShoppingList shoppingList, @PathVariable long shoppingListId, Model model){
+	public String editShoppingList(@ModelAttribute ShoppingList shoppingList, @PathVariable long shoppingListId, Model model){
 		log.debug("Saving Shopping List" + shoppingList);
 		shoppingListRepo.save(shoppingList);
-		model.addAttribute("message", "Contact " + shoppingList.getEmail() + " saved.");
+		model.addAttribute("message", "shoppingList " + shoppingList.getId() + " saved.");
 		return shoppingList(shoppingListId, model);
 	}
 	
@@ -78,7 +78,8 @@ public class ShoppingListController {
 		log.info(shoppingList.toString());
 		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
 		
-		return shoppingListSave(savedShoppingList, savedShoppingList.getId(), model);
+		
+		return shoppingList(savedShoppingList.getId(), model);
 	}
 
 

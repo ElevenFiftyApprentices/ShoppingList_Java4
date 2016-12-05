@@ -1,13 +1,15 @@
 package org.elevenfifty.shoppinglist.beans;
 
-import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,8 +21,14 @@ public class ShoppingList {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private long userId;
-	private String email;
+	
+	@OneToMany(mappedBy="shoppingList", cascade = CascadeType.ALL)
+	private  List <ShoppingListItem> shoppingListItem; 
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;	
 
 	private String name;
 	private String color;
@@ -29,14 +37,13 @@ public class ShoppingList {
 	private String createdUtc;
 	private String modifiedUtc;
 
-//	@OneToMany(mappedBy = "shoppingList")
-//	private List<ShoppingListItem> listItems;
+
 
 	protected ShoppingList() {
 	}
 
 	public ShoppingList(long userId) {
-		this.userId = userId;
+		
 	}
 
 	public ShoppingList(String name, String color, String createdUtc, String modifiedUtc, long userId) {
@@ -44,12 +51,11 @@ public class ShoppingList {
 		this.color = color;
 		this.createdUtc = createdUtc;
 		this.modifiedUtc = modifiedUtc;
-		this.userId = userId;
 	}	
 	
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", userId=" + userId + ", email=" + email + ", name=" + name + ", color="
+		return "ShoppingList [id=" + id +  ", name=" + name + ", color="
 				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
 	}
 
@@ -61,13 +67,7 @@ public class ShoppingList {
 		this.id = id;
 	}
 
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+	
 
 	public String getName() {
 		return name;
@@ -101,13 +101,5 @@ public class ShoppingList {
 		this.modifiedUtc = modifiedUtc;
 	}
 
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 }
