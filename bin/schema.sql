@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list (
 	color VARCHAR(20) NOT NULL,
 	created_utc VARCHAR(45) NOT NULL,
 	modified_utc VARCHAR(45) NULL,
-	email VARCHAR(128) NULL,
 	PRIMARY KEY (id));
 	
 CREATE TABLE IF NOT EXISTS java302.shopping_list_item (

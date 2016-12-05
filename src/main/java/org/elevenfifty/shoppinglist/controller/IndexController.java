@@ -24,11 +24,6 @@ public class IndexController
 {
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 
-	@Autowired
-	private UserRepository userRepo;
-	
-	@Autowired
-	private UserRoleRepository userRoleRepo;
 	
 	@Autowired 
 	private PermissionService permissionService;

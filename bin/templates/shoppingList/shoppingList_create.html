@@ -21,14 +21,16 @@
 </head>
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
-	<form th:action="@{|/shoppingList/shoppingList_create|}" enctype="multipart/form-data" method="POST">
-		<input name="userId" type="hidden" th:value="${shoppingList.userId}"/>
+	<form method="POST"  th:object="${shoppingList}" enctype="multipart/form-data">
+			<input name="userId" type="hidden" th:value="${shoppingList.userId}"/>
 			
-		<div class="field">
-			<label for="name">List Name</label>
-			<input name="name" type="text" th:value="${shoppingList.name}"/>
-		</div>
+			<div class="form-group">
+				<label for="name">Name</label> 
+				<input type="text" name="name" class="form-control" placeholder="name" th:field="*{name}"/>
+				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name not found</span>
+			</div>
 		
+<<<<<<< HEAD
 		<div class="field">
 			<label for="color">List Color</label>
 			<input name="color" type="text" th:value="${shoppingList.color}"/>
@@ -47,5 +49,22 @@
 		<input type="submit" th:value="Create"/>
 		<a href="/shoppingLists" th:href="@{|/shoppingLists|}">Back</a>
 	</form>
+=======
+			<div class="form-group">
+				<label for="color">Color</label> 
+				<input type="text" name="color" class="form-control" placeholder="color" th:field="*{color}"/>
+				<span th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Color not found</span>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="createdUtc">Date Created</label> 
+				<input type="text" name="createdUtc" class="form-control" placeholder="Date Created" th:field="*{createdUtc}"/>
+				<span th:if="${#fields.hasErrors('createdUtc')}" th:errors="*{createdUtc}">Date Error</span>
+			</div>						 
+			 
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	
+>>>>>>> 7722dff870ffc0493908dc1bf5ff93d1c0548d06
 </body>
 </html>

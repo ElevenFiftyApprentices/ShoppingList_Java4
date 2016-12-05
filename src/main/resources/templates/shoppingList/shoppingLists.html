@@ -33,12 +33,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="s : ${shoppingList}">			 
+			<tr th:each="s : ${shoppingList}">	
 				<td th:text="${s.Name}"></td>
 				<td th:text="${s.Color}"></td>
 				<td th:text="${s.Created_utc}"></td>
 				<td th:text="${s.Modified_utc}"></td>
 				<td th:text="${s.Id}"></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}|}">View</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
+				<td><button type="button">Delete</button></td>
 				
 			</tr>
 		</tbody>
