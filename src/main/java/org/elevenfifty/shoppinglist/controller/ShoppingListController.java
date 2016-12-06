@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -33,7 +35,7 @@ public class ShoppingListController {
 
 	@Secured("ROLE_USER")
 	@RequestMapping("/shoppingLists")
-<<<<<<< HEAD
+
 	public String ShoppingList(Model model) {
 		long currentUserId = permissionService.findCurrentUserId();
 		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
@@ -41,7 +43,7 @@ public class ShoppingListController {
 	}
 
 	@Secured("ROLE_USER")
-=======
+
 	public String shoppingLists(Model model)
 	{
 		long currentUserId = permissionService.findCurrentUserId(); 
@@ -71,14 +73,12 @@ public class ShoppingListController {
 		return shoppingList(shoppingListId, model);
 	}
 	
->>>>>>> 7722dff870ffc0493908dc1bf5ff93d1c0548d06
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
 	public String createShoppingList(Model model) {
 		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
 
 		return "shoppingList/shoppingList_create";
 	}
-<<<<<<< HEAD
 
 	@Secured("ROLE_USER")
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.POST)
@@ -88,10 +88,8 @@ public class ShoppingListController {
 		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
 
 		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
-=======
-	
-	
-	
+	}
+
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.POST)
 	public String createShoppingList(@ModelAttribute @Valid ShoppingList shoppingList,
 	    Model model) {
@@ -101,7 +99,7 @@ public class ShoppingListController {
 		
 		
 		return shoppingList(savedShoppingList.getId(), model);
->>>>>>> 7722dff870ffc0493908dc1bf5ff93d1c0548d06
+
 	}
 
 	@RequestMapping(value = "/shoppingList/shoppingList_edit", method = RequestMethod.GET)

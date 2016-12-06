@@ -49,25 +49,18 @@ public class ShoppingList {
 	public ShoppingList(String name, String color, String created_utc, String modified_utc, long userId) {
 		this.name = name;
 		this.color = color;
-<<<<<<< HEAD
 		this.created_utc = created_utc;
 		this.modified_utc = modified_utc;
-		this.userId = userId;
-=======
-		this.createdUtc = createdUtc;
-		this.modifiedUtc = modifiedUtc;
->>>>>>> 7722dff870ffc0493908dc1bf5ff93d1c0548d06
+
+		this.created_utc = created_utc;
+		this.modified_utc = modified_utc;
 	}	
 	
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "ShoppingList [id=" + id + ", userId=" + userId + ", email=" + email + ", name=" + name + ", color="
+		return "ShoppingList [id=" + id + ", userId=" + user + ", name=" + name + ", color="
 				+ color + ", created_utc=" + created_utc + ", modified_utc=" + modified_utc + "]";
-=======
-		return "ShoppingList [id=" + id +  ", name=" + name + ", color="
-				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
->>>>>>> 7722dff870ffc0493908dc1bf5ff93d1c0548d06
+		
 	}
 
 	public long getId() {
@@ -110,15 +103,5 @@ public class ShoppingList {
 		this.modified_utc = modified_utc;
 	}
 
-<<<<<<< HEAD
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-=======
->>>>>>> 7722dff870ffc0493908dc1bf5ff93d1c0548d06
 
 }
