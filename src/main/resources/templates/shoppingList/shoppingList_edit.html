@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
+<head>
+   <title>Getting Started: Serving Web Content</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   
+   <style type="text/css">
+.btn-primary {
+    background: #fa25de;
+    color: #ffffff;
+}
+</style>
+</head>
+<body layout:fragment="content">
+
+<div class="row">
+
+<h1>Edit PRODUCT Details</h1>
+
+<form th:action="@{|/shoppingList/${shoppingList.id}|}" enctype="multipart/form-data" method="POST">
+		<input name="id" type="hidden" th:value="${user.id}"/>
+		
+			<div class="field">
+				<label for="name">List Name</label>
+				<input name="name" type="text" th:value="${shoppingList.name}"/>
+				<span th:if="${#fields.hasErrors('shoppingList.name')}" th:errors="*{shoppingList.name}">Name not found</span>
+			</div>
+		
+			
+		
+			<div class="form-group">
+				<label for="color">Color</label> 
+				<input type="text" name="color" class="form-control" placeholder="color" th:field="*{shoppingList.color}"/>
+				<span th:if="${#fields.hasErrors('shoppingList.color')}" th:errors="*{shoppingList.color}">Color not found</span>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="createdUtc">Date Created</label> 
+				<input type="text" name="createdUtc" class="form-control" placeholder="Date Created" th:field="*{shoppingList.createdUtc}"/>
+				<span th:if="${#fields.hasErrors('shoppingList.createdUtc')}" th:errors="*{shoppingList.createdUtc}">Date Error</span>
+			</div>			 
+			
+			<div class="form-group"> 
+				<label for="modifiedUtc">Date Modified</label> 
+				<input type="text" name="modifiedUtc" class="form-control" placeholder="Date Modified" th:field="*{shoppingList.modifiedUtc}"/>
+				<span th:if="${#fields.hasErrors('shoppingList.modifiedUtc')}" th:errors="*{shoppingList.modifiedUtc}">Date Error</span>
+			</div>						 
+			 
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+
+</div>
+  
+</body>
+</html>

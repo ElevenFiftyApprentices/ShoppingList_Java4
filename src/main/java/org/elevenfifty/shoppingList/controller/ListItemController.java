@@ -1,5 +1,5 @@
 package org.elevenfifty.shoppingList.controller;
 
-public class IndexController {
+public class ListItemController {
 
 }
