@@ -7,21 +7,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <!-- <link rel="stylesheet" type="text/css" href="../css/bettysLogo.css" th:href="@{/css/bettysLogo.css}" /> -->
 <style type="text/css">
-.table-hover thead tr:hover th, 
- .table-hover tbody tr:hover td {
-        background-color: #fcccf6;
+.table-hover thead tr:hover th, .table-hover tbody tr:hover td {
+	background-color: #fcccf6;
 }
 
 .btn-primary {
-    background: #fa25de;
-    color: #ffffff;
+	background: #fa25de;
+	color: #ffffff;
 }
 </style>
 </head>
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
-	<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/shoppingList_create|}" role="button">Create New Shopping List</a>
-	<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/shoppingList_edit|}" role="button">Edit Shopping List</a>
+	<a class="btn btn-primary" href="/"
+		th:href="@{|/shoppingList/shoppingList_create|}" role="button">Create
+		New Shopping List</a>
+	<a class="btn btn-primary" href="/"
+		th:href="@{|/shoppingList/shoppingList_edit|}" role="button">Edit
+		Shopping List</a>
+	<a class="btn btn-primary" href="/"
+		th:href="@{|/shoppingList/shoppingList_delete|}" role="button">Delete
+		Shopping List</a>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -33,16 +39,18 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="s : ${shoppingList}">	
+			<tr th:each="s : ${shoppingList}">
 				<td th:text="${s.Name}"></td>
 				<td th:text="${s.Color}"></td>
 				<td th:text="${s.Created_utc}"></td>
 				<td th:text="${s.Modified_utc}"></td>
 				<td th:text="${s.Id}"></td>
-				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}|}">View</a></td>
-				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
+				<td><a class="btn btn-primary" href="/" role="button"
+					th:href="@{|/shoppingList/${s.id}|}">View</a></td>
+				<td><a class="btn btn-primary" href="/" role="button"
+					th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
 				<td><button type="button">Delete</button></td>
-				
+
 			</tr>
 		</tbody>
 	</table>

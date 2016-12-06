@@ -62,7 +62,7 @@ public class PermissionService {
 	public String getCurrentEmail() {
 		return getToken().getName();
 	}
-	//retruns the token for the getname operator, this is linked to the email
+	//returns the token for the getname operator, this is linked to the email
 	
 	public User findCurrentUser() {
 		List<User> users = userRepository.findByEmail(getToken().getName());

@@ -39,7 +39,7 @@ public class ShoppingList {
 
 
 
-	protected ShoppingList() {
+	public ShoppingList() {
 	}
 
 	public ShoppingList(User userId) {

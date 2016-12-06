@@ -75,7 +75,7 @@ public class ShoppingListController {
 	
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
 	public String createShoppingList(Model model) {
-		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+		model.addAttribute("shoppingList", new ShoppingList());
 
 		return "shoppingList/shoppingList_create";
 	}
@@ -88,6 +88,12 @@ public class ShoppingListController {
 		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
 
 		return profileSave(savedShoppingList, savedShoppingList.getId(), false, file, model);
+	}
+
+	private String profileSave(org.elevenfifty.shoppinglist.beans.ShoppingList savedShoppingList, long id, boolean b,
+			MultipartFile file, Model model) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.POST)
@@ -104,7 +110,7 @@ public class ShoppingListController {
 
 	@RequestMapping(value = "/shoppingList/shoppingList_edit", method = RequestMethod.GET)
 	public String editShoppingList(Model model) {
-		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+		model.addAttribute("shoppingList", new ShoppingList());
 
 		return "shoppingList/shoppingList_edit";
 	}
