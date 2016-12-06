@@ -1,4 +1,4 @@
-package org.elevenfifty.shoppingList.beans;
+package org.elevenfifty.shoppinglist.beans;
 
 import java.util.List;
 
