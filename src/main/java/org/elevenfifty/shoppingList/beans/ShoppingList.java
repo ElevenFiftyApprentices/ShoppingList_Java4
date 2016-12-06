@@ -1,4 +1,4 @@
-package org.elevenfifty.shoppingList.beans;
+package org.elevenfifty.shoppinglist.beans;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import org.elevenfifty.shoppinglist.beans.User;
 
 
 

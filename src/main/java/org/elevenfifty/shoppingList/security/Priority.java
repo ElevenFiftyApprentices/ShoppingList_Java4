@@ -1,4 +1,4 @@
-package org.elevenfifty.shoppingList.security;
+package org.elevenfifty.shoppinglist.security;
 
 public enum Priority {
 

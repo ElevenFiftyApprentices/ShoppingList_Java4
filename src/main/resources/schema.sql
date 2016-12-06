@@ -1,7 +1,7 @@
-CREATE SCHEMA IF NOT EXISTS java302;
-USE java302 ;
 
-CREATE TABLE IF NOT EXISTS java302.shopping_list (
+USE heroku_544f0fc959e74e2 ;
+
+CREATE TABLE IF NOT EXISTS 	heroku_544f0fc959e74e2.shopping_list (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	name  VARCHAR(45) NOT NULL,
 	color VARCHAR(20) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list (
 	modified_utc VARCHAR(45) NULL,
 	PRIMARY KEY (id));
 	
---CREATE TABLE IF NOT EXISTS java302.shopping_list_item (
+--CREATE TABLE IF NOT EXISTS heroku_544f0fc959e74e2.shopping_list_item (
 --	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 --	shopping_list_id INT UNSIGNED NOT NULL,
 --	contents VARCHAR(100) NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list (
 --	modified_utc VARCHAR(45) NULL,
 --	PRIMARY KEY (id));
 --	
---CREATE TABLE IF NOT EXISTS java302.notes(
+--CREATE TABLE IF NOT EXISTS heroku_544f0fc959e74e2.notes(
 --	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 --	shopping_list_item_id INT UNSIGNED NOT NULL,
 --	body VARCHAR(100) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list (
 --	modified_date VARCHAR(45) NULL,
 --	PRIMARY KEY (id));
 --	
---CREATE TABLE IF NOT EXISTS java302.users (
+--CREATE TABLE IF NOT EXISTS heroku_544f0fc959e74e2.users (
 --  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 --  first_name VARCHAR(45) NOT NULL,
 --  last_name VARCHAR(45) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS java302.shopping_list (
 --  active tinyint(1) NOT NULL DEFAULT 1,
 --  PRIMARY KEY (id));
 --  
---  CREATE TABLE IF NOT EXISTS java302.user_roles (
+--  CREATE TABLE IF NOT EXISTS 	heroku_544f0fc959e74e2.user_roles (
 --  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 --  user_id INT UNSIGNED NOT NULL,
 --  role VARCHAR(45) NOT NULL,
