@@ -50,21 +50,24 @@ public class ShoppingListController {
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/shoppingList_edit", method = RequestMethod.GET)
 	public String editShoppingList(@PathVariable long shoppingListId, Model model){
-		model.addAttribute("shoppingList", shoppingListRepo.findOne(shoppingListId));
+		model.addAttribute("shoppingListId", shoppingListId);
+		ShoppingList u = shoppingListRepo.findOne(shoppingListId);
+		model.addAttribute("ShoppingList", u);
 		return "shoppingList/shoppingList_edit";
 	}
 	
 	@RequestMapping(value = "/shoppingList/{shoppingListId}/shoppingList_edit", method = RequestMethod.POST)
 	public String editShoppingList(@ModelAttribute ShoppingList shoppingList, @PathVariable long shoppingListId, Model model){
-		log.debug("Saving Shopping List" + shoppingList);
+//		log.debug("Saving Shopping List" + shoppingList);
 		shoppingListRepo.save(shoppingList);
-		model.addAttribute("message", "shoppingList " + shoppingList.getId() + " saved.");
-		return shoppingList(shoppingListId, model);
+		model.addAttribute("ShoppingList ", shoppingList);
+//		return shoppingList(shoppingListId, model);
+		return "shoppingList/shoppingLists";
 	}
 	
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
 	public String createShoppingList(Model model) {
-		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+		model.addAttribute("shoppingList", new ShoppingList(userRepo.findOne(permissionService.findCurrentUserId())));
 		
 		return "shoppingList/shoppingList_create";
 	}

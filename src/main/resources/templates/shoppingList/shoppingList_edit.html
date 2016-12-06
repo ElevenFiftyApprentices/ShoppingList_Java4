@@ -20,9 +20,9 @@
 <form th:action="@{|/shoppingList/${shoppingList.id}|}" enctype="multipart/form-data" method="POST">
 		<input name="id" type="hidden" th:value="${shoppingList.id}"/>
 		
-			<div class="field">
+			<div class="form-group">
 				<label for="name">List Name</label>
-				<input name="name" type="text" th:value="${shoppingList.name}"/>
+				<input name="name" type="text" th:field="${shoppingList.name}"/>
 				<span th:if="${#fields.hasErrors('shoppingList.name')}" th:errors="*{shoppingList.name}">Name not found</span>
 			</div>
 		
