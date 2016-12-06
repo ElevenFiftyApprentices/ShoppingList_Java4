@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.elevenfifty.shoppinglist.beans.User;
+
 
 
 @Entity
@@ -26,7 +28,7 @@ public class ShoppingList {
 	private long id;
 
 	
-	@OneToMany(mappedBy="shopping_list", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="shoppingList", cascade = CascadeType.ALL)
 	private  List <ShoppingListItem> shoppingListItems; 
 	
 	
@@ -97,6 +99,28 @@ public class ShoppingList {
 
 	public void setModifiedUtc() {
 		this.modifiedUtc = new Date(System.currentTimeMillis());
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ShoppingList other = (ShoppingList) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 
