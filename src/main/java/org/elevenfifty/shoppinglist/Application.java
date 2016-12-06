@@ -16,8 +16,6 @@ import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
 
 @SpringBootApplication
-@EnableJpaRepositories("org.elevenfifty.shoppinglist.repositories")
-@EnableAutoConfiguration
 public class Application {
 
 	private static final Logger log = LoggerFactory.getLogger(Application.class);

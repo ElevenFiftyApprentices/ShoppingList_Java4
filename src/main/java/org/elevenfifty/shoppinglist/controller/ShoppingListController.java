@@ -1,8 +1,10 @@
 package org.elevenfifty.shoppinglist.controller;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
+import org.elevenfifty.shoppinglist.beans.User;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.elevenfifty.shoppinglist.repositories.UserRepository;
 import org.elevenfifty.shoppinglist.security.PermissionService;
@@ -28,6 +30,13 @@ public class ShoppingListController {
 	@Autowired
 	private UserRepository userRepo;
 
+	@PostConstruct
+	public void initStaticUserRepo() {
+		userRepo = this.userRepo;
+	}
+	
+	private static UserRepository userRepository;
+	
 	@Autowired
 	private PermissionService permissionService;
 
@@ -35,8 +44,9 @@ public class ShoppingListController {
 	@RequestMapping("/shoppingLists")
 	public String shoppingLists(Model model)
 	{
-		long currentUserId = permissionService.findCurrentUserId(); 
-		model.addAttribute("shoppingList", shoppingListRepo.findAllById(currentUserId));
+		User currentUser = ShoppingListController.getCurrentUser();
+		model.addAttribute("shoppingList", shoppingListRepo.findAllByUser(currentUser));
+		
 		return "shoppingList/shoppingLists";
 	}
 	
@@ -64,7 +74,8 @@ public class ShoppingListController {
 	
 	@RequestMapping(value = "/shoppingList/shoppingList_create", method = RequestMethod.GET)
 	public String createShoppingList(Model model) {
-		model.addAttribute("shoppingList", new ShoppingList(permissionService.findCurrentUserId()));
+		
+		model.addAttribute("shoppingList", new ShoppingList());
 		
 		return "shoppingList/shoppingList_create";
 	}
@@ -79,10 +90,25 @@ public class ShoppingListController {
 		ShoppingList savedShoppingList = shoppingListRepo.save(shoppingList);
 		
 		
-		return shoppingList(savedShoppingList.getId(), model);
+		return "redirect:/shoppingList/shoppingLists";
 	}
 
+	public static User getCurrentUser() {
+		User currentUser = new User();
+		String email = currentUser.getEmail();
+		currentUser = userRepository.findOneByEmail(email);
+		return currentUser;
+	}
 
 }
+
+
+
+
+
+
+
+
+
 
 

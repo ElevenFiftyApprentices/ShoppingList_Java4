@@ -10,9 +10,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface UserRepository extends CrudRepository<User, Long> {
 
 
-	List<User> findByEmail(String email);
-
-	List<User> findAllByOrderByFirstNameAscLastNameAsc();
-
+	List<User> findOneByEmail(String email);
 
 }

@@ -37,7 +37,7 @@ public class PermissionService {
 
 
 	public long findCurrentUserId() {
-		List<User> users = userRepository.findByEmail(getToken().getName());
+		List<User> users = userRepository.findOneByEmail(getToken().getName());
 		return users != null && !users.isEmpty() ? users.get(0).getId() : -1;
 	}
 
@@ -65,7 +65,7 @@ public class PermissionService {
 	//retruns the token for the getname operator, this is linked to the email
 	
 	public User findCurrentUser() {
-		List<User> users = userRepository.findByEmail(getToken().getName());
+		List<User> users = userRepository.findOneByEmail(getToken().getName());
 		return users != null && !users.isEmpty() ? users.get(0) : new User();
 	}
 	//find current user returns a new object while findcurrentuserbyid returns a value?

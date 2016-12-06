@@ -1,5 +1,6 @@
 package org.elevenfifty.shoppinglist.beans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "shopping_list")
@@ -23,40 +25,36 @@ public class ShoppingList {
 
 	
 	@OneToMany(mappedBy="shoppingList", cascade = CascadeType.ALL)
-	private  List <ShoppingListItem> shoppingListItem; 
+	private  List <ShoppingListItem> shoppingListItems; 
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;	
 
+	@Size(max = 100)
 	private String name;
 	private String color;
 
 	@Column(unique = true)
-	private String createdUtc;
-	private String modifiedUtc;
+	private Date createdUtc;
+	private Date modifiedUtc;
 
 
-
-	protected ShoppingList() {
+	public List<ShoppingListItem> getShoppingListItems() {
+		return shoppingListItems;
 	}
 
-	public ShoppingList(User userId) {
-		this.user = userId;
+	public void setShoppingListItems(List<ShoppingListItem> shoppingListItems) {
+		this.shoppingListItems = shoppingListItems;
 	}
 
-	public ShoppingList(String name, String color, String createdUtc, String modifiedUtc, long userId) {
-		this.name = name;
-		this.color = color;
-		this.createdUtc = createdUtc;
-		this.modifiedUtc = modifiedUtc;
-	}	
-	
-	@Override
-	public String toString() {
-		return "ShoppingList [id=" + id +  ", name=" + name + ", color="
-				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public long getId() {
@@ -83,20 +81,20 @@ public class ShoppingList {
 		this.color = color;
 	}
 
-	public String getCreatedUtc() {
+	public Date getCreatedUtc() {
 		return createdUtc;
 	}
 
-	public void setCreatedUtc(String createdUtc) {
-		this.createdUtc = createdUtc;
+	public void setCreatedUtc() {
+		this.createdUtc = new Date(System.currentTimeMillis());
 	}
 
-	public String getModifiedUtc() {
+	public Date getModifiedUtc() {
 		return modifiedUtc;
 	}
 
-	public void setModifiedUtc(String modifiedUtc) {
-		this.modifiedUtc = modifiedUtc;
+	public void setModifiedUtc() {
+		this.modifiedUtc = new Date(System.currentTimeMillis());
 	}
 
 
