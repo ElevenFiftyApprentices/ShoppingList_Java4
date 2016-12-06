@@ -26,7 +26,7 @@ public class ShoppingList {
 	private long id;
 
 	
-	@OneToMany(mappedBy="shopping_list", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="shoppingList", cascade = CascadeType.ALL)
 	private  List <ShoppingListItem> shoppingListItems; 
 	
 	

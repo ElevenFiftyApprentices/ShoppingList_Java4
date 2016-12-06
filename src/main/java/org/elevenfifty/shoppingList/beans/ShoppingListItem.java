@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shoppingListItem")
+@Table(name = "shopping_list_item")
 public class ShoppingListItem {
 	
 	@Id
