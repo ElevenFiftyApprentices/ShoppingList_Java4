@@ -17,8 +17,8 @@
 			</thread>
 			<tbody>
 				<tr th:each= "shoppingListItem: ${shoppingListItem}">
-					<td th:text="${shoppingListItem.contents}"></td>
-					<td th:text="${shoppingListItem.priority}"></td>
+					<td th:text="${contents}"></td>
+					<td th:text="${priority}"></td>
 					<td><button type="button">Delete</button></td>
 				</tr>
 			</tbody>
