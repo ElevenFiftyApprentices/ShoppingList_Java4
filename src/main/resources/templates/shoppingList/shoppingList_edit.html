@@ -17,7 +17,7 @@
 
 <h1>Edit Shopping List</h1>
 
-<form method="POST" th:object="${product}" enctype="multipart/form-data">
+<form method="POST" th:object="${shoppingList}" enctype="multipart/form-data">
 	<input type="hidden" th:field="*{id}"/>
 
   <div class="form-group">
@@ -39,15 +39,15 @@
   </div>
 
   <div class="form-group">
-    <label for="createdUtc">Created On:</label>
-    <input type="text" name="createdUtc" class="form-control" placeholder="Created On:" th:field="*{createdUtc}" />
-  	<span th:if="${#fields.hasErrors('createdUtc')}" th:errors="*{createdUtc}">Created On:</span>
+    <label for="created_utc">Created On:</label>
+    <input type="text" name="created_utc" class="form-control" placeholder="Created On:" th:field="*{created_utc}" />
+  	<span th:if="${#fields.hasErrors('created_utc')}" th:errors="*{created_utc}">Created On:</span>
   </div>
   
   <div class="form-group">
-    <label for="modifiedUtc">Modified On:</label>
-    <input type="text" name="modifiedUtc" class="form-control" placeholder="Modified On:" th:field="*{modifiedUtc}" />
-  	<span th:if="${#fields.hasErrors('modifiedUtc')}" th:errors="*{modifiedUtc}">Mondified On:</span>
+    <label for="modified_utc">Modified On:</label>
+    <input type="text" name="modified_utc" class="form-control" placeholder="Modified On:" th:field="*{modified_utc}" />
+  	<span th:if="${#fields.hasErrors('modified_utc')}" th:errors="*{modified_utc}">Modified On:</span>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>

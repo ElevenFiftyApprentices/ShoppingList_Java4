@@ -6,3 +6,5 @@
 /templates/
 /org/
 >>>>>>> 5f33f44207c82793e9d7f8e288c6ba8cd8dbe5b5
+/application.properties
+/data.sql

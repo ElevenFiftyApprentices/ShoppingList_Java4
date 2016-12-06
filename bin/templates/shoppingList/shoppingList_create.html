@@ -1,26 +1,28 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
 <head>
-    <title>Create Contact</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    
-    <style type="text/css">
-    	.field {
-    		display: block;
-    		margin-bottom: 5px;
-    	}
-    	
-    	.field input, .field select {
-    		float: right;
-    		width: 170px;
-    	}
-    	form {
-    		width: 290px;
-    	}
-    </style>
+<title>Create Contact</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+.field {
+	display: block;
+	margin-bottom: 5px;
+}
+
+.field input, .field select {
+	float: right;
+	width: 170px;
+}
+
+form {
+	width: 290px;
+}
+</style>
 </head>
 <body layout:fragment="content">
-<<<<<<< HEAD
 
 	<div class="row">
 
@@ -39,36 +41,31 @@
 			</div>
 
 			<div class="form-group">
-				<label for="name">Name</label> <input
-					type="text" name="name" class="form-control"
-					placeholder="mame" th:field="*{name}" />
-				<span th:if="${#fields.hasErrors('name')}"
-					th:errors="*{name}">Name</span>
+				<label for="name">Name</label> <input type="text" name="name"
+					class="form-control" placeholder="name" th:field="*{name}" /> <span
+					th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name</span>
 			</div>
 
 			<div class="form-group">
-				<label for="color">
-					Color</label> <input type="text" name="color"
-					class="form-control" placeholder="color"
-					th:field="*{color}" /> <span
-					th:if="${#fields.hasErrors('color')}"
-					th:errors="*{color}">
+				<label for="color"> Color</label> <input type="text" name="color"
+					class="form-control" placeholder="color" th:field="*{color}" /> <span
+					th:if="${#fields.hasErrors('color')}" th:errors="*{color}">
 					Color</span>
 			</div>
 
 			<div class="form-group">
 				<label for="created_utc">List Created On:</label> <input type="text"
-					name="created_utc" class="form-control"
-					placeholder="created_utc" th:field="*{created_utc}" />
-				<span th:if="${#fields.hasErrors('created_utc')}"
+					name="created_utc" class="form-control" placeholder="created_utc"
+					th:field="*{created_utc}" /> <span
+					th:if="${#fields.hasErrors('created_utc')}"
 					th:errors="*{created_utc}">List Created On:</span>
 			</div>
-			
+
 			<div class="form-group">
-				<label for="modified_utc">List Modified On:</label> <input type="text"
-					name="modified_utc" class="form-control"
-					placeholder="modified_utc" th:field="*{modified_utc}" />
-				<span th:if="${#fields.hasErrors('modified_utc')}"
+				<label for="modified_utc">List Modified On:</label> <input
+					type="text" name="modified_utc" class="form-control"
+					placeholder="modified_utc" th:field="*{modified_utc}" /> <span
+					th:if="${#fields.hasErrors('modified_utc')}"
 					th:errors="*{modified_utc}">List Modified On:</span>
 			</div>
 
@@ -76,35 +73,5 @@
 		</form>
 
 	</div>
-
-=======
-	<h1>Shopping List</h1>
-	<form th:action="@{|/shoppingList/shoppingList_create|}" enctype="multipart/form-data" method="POST">
-		<input name="userId" type="hidden" th:value="${shoppingList.userId}"/>
-			
-		<div class="field">
-			<label for="name">List Name</label>
-			<input name="name" type="text" th:value="${shoppingList.name}"/>
-		</div>
-		
-		<div class="field">
-			<label for="color">List Color</label>
-			<input name="color" type="text" th:value="${shoppingList.color}"/>
-		</div>
-		
-		<div class="field">
-			<label for="createdUtc">Date Created</label>
-			<input name="createdUtc" type="text" th:value="${shoppingList.createdUtc}"/>
-		</div>
-		
-		<div class="field">
-			<label for="modifiedUtc">Date Modified</label>
-			<input name="modifiedUtc" type="text" th:value="${shoppingList.modifiedUtc}"/>
-		</div>
-		
-		<input type="submit" th:value="Create"/>
-		<a href="/shoppingLists" th:href="@{|/shoppingLists|}">Back</a>
-	</form>
->>>>>>> 5f33f44207c82793e9d7f8e288c6ba8cd8dbe5b5
 </body>
 </html>

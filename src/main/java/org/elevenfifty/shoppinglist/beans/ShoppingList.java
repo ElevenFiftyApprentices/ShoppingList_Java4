@@ -26,8 +26,8 @@ public class ShoppingList {
 	private String color;
 
 	@Column(unique = true)
-	private Date created_utc;
-	private Date modified_utc;
+	private String created_utc;
+	private String modified_utc;
 
 //	@OneToMany(mappedBy = "shoppingList")
 //	private List<ShoppingListItem> listItems;
@@ -39,7 +39,7 @@ public class ShoppingList {
 		this.userId = userId;
 	}
 
-	public ShoppingList(String name, String color, Date created_utc, Date modified_utc, long userId) {
+	public ShoppingList(String name, String color, String created_utc, String modified_utc, long userId) {
 		this.name = name;
 		this.color = color;
 		this.created_utc = created_utc;
@@ -85,19 +85,19 @@ public class ShoppingList {
 		this.color = color;
 	}
 
-	public Date getCreated_utc() {
+	public String getCreated_utc() {
 		return created_utc;
 	}
 
-	public void setCreated_utc(Date created_utc) {
+	public void setCreated_utc(String created_utc) {
 		this.created_utc = created_utc;
 	}
 
-	public Date getModified_utc() {
+	public String getModified_utc() {
 		return modified_utc;
 	}
 
-	public void setModified_utc(Date modified_utc) {
+	public void setModified_utc(String modified_utc) {
 		this.modified_utc = modified_utc;
 	}
 

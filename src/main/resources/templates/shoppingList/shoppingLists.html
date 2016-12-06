@@ -19,12 +19,14 @@
 </head>
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
-<<<<<<< HEAD
+
 	<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/create|}"
 		role="button">Create New Shopping List</a>
-=======
-	<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/shoppingList_create|}" role="button">Create New Shopping List</a>
->>>>>>> 5f33f44207c82793e9d7f8e288c6ba8cd8dbe5b5
+
+	<a class="btn btn-primary" href="/"
+		th:href="@{|/shoppingList/shoppingList_create|}" role="button">Create
+		New Shopping List</a>
+
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -36,27 +38,21 @@
 			</tr>
 		</thead>
 		<tbody>
-<<<<<<< HEAD
+
 			<tr th:each="s : ${shoppingLists}">
 				<td th:text="${s.Id}"></td>
-=======
-			<tr th:each="s : ${shoppingList}">			 
->>>>>>> 5f33f44207c82793e9d7f8e288c6ba8cd8dbe5b5
+			<tr th:each="s : ${shoppingList}">
 				<td th:text="${s.Name}"></td>
 				<td th:text="${s.Color}"></td>
 				<td th:text="${s.CreatedUtc}"></td>
 				<td th:text="${s.ModifiedUtc}"></td>
-<<<<<<< HEAD
 				<td><a class="btn btn-default" href="/"
 					th:href="@{|/shoppingList/${s.id}}" role="button">View</a></td>
 				<td><a class="btn btn-success" href="/"
 					th:href="@{|/shoppingList/${s.id}/edit|}" role="button">Edit</a></td>
 				<td><a class="btn btn-danger" href="/"
 					th:href="@{|/shoppingList/${s.id}/delete|}" role="button">Delete</a></td>
-=======
 				<td th:text="${s.Id}"></td>
-				
->>>>>>> 5f33f44207c82793e9d7f8e288c6ba8cd8dbe5b5
 			</tr>
 		</tbody>
 	</table>
