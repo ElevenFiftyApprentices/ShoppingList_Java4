@@ -26,26 +26,29 @@ form {
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
 
-	
-	<form method="POST"  th:object="${shoppingList}" enctype="multipart/form-data">
-			<!--  <input name="userId" type="hidden" th:value="${user.id}"/> -->
-			
-			
-			
-			<div class="form-group">
-				<label for="name">Name</label> 
-				<input type="text" name="name" class="form-control" placeholder="name" th:field="*{name}"/>
-				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name not found</span>
-			</div>
-		
-			<div class="form-group">
-				<label for="color">Color</label> 
-				<input type="text" name="color" class="form-control" placeholder="color" th:field="*{color}"/>
-				<span th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Color not found</span>
-			</div>								 
-			 
-			<button type="submit" class="btn btn-default">Submit</button>
-		</form>
+
+	<form method="POST" th:object="${shoppingList}"
+		enctype="multipart/form-data">
+		<!--  <input name="userId" type="hidden" th:value="${user.id}"/> -->
+
+
+
+		<div class="form-group">
+			<label for="name">Name</label> <input type="text" name="name"
+				class="form-control" placeholder="name" th:field="*{name}" /> <span
+				th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name
+				not found</span>
+		</div>
+
+		<div class="form-group">
+			<label for="color">Color</label> <input type="text" name="color"
+				class="form-control" placeholder="color" th:field="*{color}" /> <span
+				th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Color
+				not found</span>
+		</div>
+
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
 
 </body>
 </html>
