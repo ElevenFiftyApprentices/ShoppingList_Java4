@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+	<div class="row">
+
+		<h1>List Delete</h1>
+
+		<table class="table table-striped table-hover">
+
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Date Created</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="shoppingLists : ${shoppingLists}">
+					<td th:text="${shoppingLists.name}"></td>
+					<td th:text="${shoppingLists.createdUtc}"></td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<form method="POST" th:object="${shoppingLists}">
+			<input type="hidden" th:value="*{id}" />
+
+			<button type="submit" class="btn btn-danger">Delete</button>
+
+			<div th:unless="${shoppingList}">
+				<h3>No List Found</h3>
+			</div>
+		</form>
+
+	</div>
+
+
+</body>
+</html>
