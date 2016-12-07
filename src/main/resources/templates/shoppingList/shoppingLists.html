@@ -19,9 +19,9 @@
 </head>
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
-	<a class="btn btn-primary" href="/"
-		th:href="@{|/shoppingList/shoppingList_create|}" role="button">Create
-		New Shopping List</a>
+
+	<a class="btn btn-primary" href="/" th:href="@{|/shoppingListCreate|}" role="button">Create New Shopping List</a>
+
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -39,12 +39,10 @@
 				<td th:text="${s.CreatedUtc}"></td>
 				<td th:text="${s.ModifiedUtc}"></td>
 				<td th:text="${s.Id}"></td>
-				<td><a class="btn btn-primary" href="/" role="button"
-					th:href="@{|/shoppingList/${s.id}|}">View</a></td>
-				<td><a class="btn btn-primary" href="/" role="button"
-					th:href="@{|/shoppingList/${s.id}/shoppingList_edit|}">Edit</a></td>
-				<td><button type="button">Delete</button></td>
 
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}|}">View</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${s.id}/edit|}">Edit</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${s.id}/delete|}">Delete</a></td>
 			</tr>
 		</tbody>
 	</table>
