@@ -29,7 +29,7 @@ public class ShoppingListController {
 		return "shoppingList/shoppingLists";
 	}
 	
-	@GetMapping(path = {"/shoppingLists/{id}"})
+	@GetMapping(path = {"/shoppingList/{id}"})
 	public String ShoppingListView(Model model, @PathVariable(name = "id") long id){
 		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
@@ -55,14 +55,14 @@ public class ShoppingListController {
 		if(result.hasErrors()) {
 			log.info(shoppingList.toString());
 			model.addAttribute("shoppingList", shoppingList);
-			return "shoppingLists/shoppingList_edit";
+			return "shoppingList/shoppingList_edit";
 		}
 		log.info(shoppingList.toString());
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
 		model.addAttribute("message", "Contact " + shoppingList.getName() + " saved.");
 
-		return "redirect:/shoppingList/shoppingLists/" + shoppingList.getId();
+		return "redirect:/shoppingList/" + shoppingList.getId();
 	}
 	
 	
@@ -79,8 +79,30 @@ public class ShoppingListController {
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
 		
-		return "redirect:/shoppingLists";
+		return "redirect:/shoppingList/"+ shoppingList.getId();
 	}
+	
+	@GetMapping(path = {"shoppingLists/{id}/delete"})
+	public String listDelete(Model model, @PathVariable(name = "id") Long id) {
+		model.addAttribute("id", id);
+		ShoppingList s = shoppingListRepo.findOne(id);
+		model.addAttribute("shoppingLists", s);
+		return "shoppingList/shoppingList_delete";
+	}
+	
+	@PostMapping(path = "/shoppingLists/{id}/delete")
+	public String listDeleteSave(@PathVariable(name = "id") Long id, @ModelAttribute @Valid ShoppingList shoppingList,
+			BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			model.addAttribute("shoppingList", shoppingList);
+			return "shoppingLists";
+		} else {
+			shoppingListRepo.delete(shoppingList);
+			return "redirect:/shoppingLists";
+		}
+	}
+	
+	
 	
 	
 	
