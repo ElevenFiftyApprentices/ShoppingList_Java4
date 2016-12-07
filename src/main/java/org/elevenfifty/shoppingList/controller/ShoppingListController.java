@@ -95,7 +95,7 @@ public class ShoppingListController {
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("shoppingList", shoppingList);
-			return "shoppingLists";
+			return "shoppingList/shoppingList_delete";
 		} else {
 			shoppingListRepo.delete(shoppingList);
 			return "redirect:/shoppingLists";
