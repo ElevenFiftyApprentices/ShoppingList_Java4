@@ -32,9 +32,9 @@ public class ShoppingList {
 	private  List <ShoppingListItem> shoppingListItems; 
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;	
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;	
 
 	@Size(max = 100)
 	private String name;
@@ -53,13 +53,13 @@ public class ShoppingList {
 		this.shoppingListItems = shoppingListItems;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	public long getId() {
 		return id;
@@ -123,5 +123,11 @@ public class ShoppingList {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "ShoppingList [id=" + id + ", shoppingListItems=" + shoppingListItems + ", name=" + name + ", color="
+				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
+	}
 
+	
 }

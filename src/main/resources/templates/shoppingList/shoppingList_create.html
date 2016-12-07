@@ -22,7 +22,9 @@
 <body layout:fragment="content">
 	<h1>Shopping List</h1>
 	<form method="POST"  th:object="${shoppingList}" enctype="multipart/form-data">
-			<input name="userId" type="hidden" th:value="${user.id}"/>
+			<!--  <input name="userId" type="hidden" th:value="${user.id}"/> -->
+			
+			
 			
 			<div class="form-group">
 				<label for="name">Name</label> 
@@ -34,13 +36,7 @@
 				<label for="color">Color</label> 
 				<input type="text" name="color" class="form-control" placeholder="color" th:field="*{color}"/>
 				<span th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Color not found</span>
-			</div>
-			
-			<div class="form-group"> 
-				<label for="createdUtc">Date Created</label> 
-				<input type="text" name="createdUtc" class="form-control" placeholder="Date Created" th:field="*{createdUtc}"/>
-				<span th:if="${#fields.hasErrors('createdUtc')}" th:errors="*{createdUtc}">Date Error</span>
-			</div>						 
+			</div>								 
 			 
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
