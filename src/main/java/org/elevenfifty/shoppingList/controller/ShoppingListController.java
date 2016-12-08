@@ -38,7 +38,6 @@ public class ShoppingListController {
 		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
 		model.addAttribute("shoppingList", s);
-		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAll());
 		
 		return "shoppingList/shoppingList";
 		
