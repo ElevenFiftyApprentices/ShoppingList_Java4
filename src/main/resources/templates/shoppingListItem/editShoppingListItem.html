@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+.btn-primary {
+	background: #fa25de;
+	color: #ffffff;
+}
+</style>
+</head>
+<body layout:fragment="content">
+
+	<div class="row">
+
+		<h1>Edit Shopping List Items</h1>
+
+		<form th:action="@{|/shoppingListItem/${shoppingListItem.id}|}"
+			enctype="multipart/form-data" method="POST">
+			<input name="id" type="hidden" th:value="${user.id}" />
+
+			<div class="field">
+				<label for="contents">Edit Contents</label> <input name="contents" type="text"
+					th:value="${contents}" /> <span
+					th:if="${#fields.hasErrors('contents')}"
+					th:errors="*{contents}">Contents not found</span>
+			</div>
+
+			<div class="form-group">
+				<label for="priority">Priority</label> <input type="text" name="priority"
+					class="form-control" placeholder="priority"
+					th:field="*{priority}" /> <span
+					th:if="${#fields.hasErrors('priority')}"
+					th:errors="*{priority}">Priority not found</span>
+			</div>
+
+			<div class="form-group">
+				<label for="delete">Delete Item</label> <input type="text"
+					name="delete" class="form-control" placeholder="delete"
+					th:field="*{delete}" /> <span
+					th:if="${#fields.hasErrors('delete')}"
+					th:errors="*{delete}">Delete Error</span>
+			</div>
+
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+
+	</div>
+
+</body>
+</html>
