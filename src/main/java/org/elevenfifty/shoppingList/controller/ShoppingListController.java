@@ -3,6 +3,7 @@ package org.elevenfifty.shoppinglist.controller;
 import javax.validation.Valid;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
+import org.elevenfifty.shoppinglist.repositories.ShoppingListItemRepository;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,42 +18,43 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ShoppingListController {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(ShoppingListController.class);
-	
+
 	@Autowired
 	private ShoppingListRepository shoppingListRepo;
-	
-	@GetMapping(path = {"/shoppingLists"})
-	public String ShoppingListsPage(ShoppingList shoppingList, Model model){
-		model.addAttribute("shoppingList",shoppingListRepo.findAll());
+
+	@Autowired
+	private ShoppingListItemRepository shoppingListItemRepo;
+
+	@GetMapping(path = { "/shoppingLists" })
+	public String ShoppingListsPage(ShoppingList shoppingList, Model model) {
+		model.addAttribute("shoppingList", shoppingListRepo.findAll());
 		return "shoppingList/shoppingLists";
 	}
-	
-	@GetMapping(path = {"/shoppingList/{id}"})
-	public String ShoppingListView(Model model, @PathVariable(name = "id") long id){
+
+	@GetMapping(path = { "/shoppingList/{id}" })
+	public String ShoppingListView(Model model, @PathVariable(name = "id") long id) {
 		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
 		model.addAttribute("shoppingList", s);
-		
+
 		return "shoppingList/shoppingList";
-		
-		
+
 	}
-	
-	
-	@GetMapping(path = {"/shoppingLists/{id}/edit"})
-	public String ShoppingListEdit(Model model, @PathVariable(name = "id")long id){
+
+	@GetMapping(path = { "/shoppingLists/{id}/edit" })
+	public String ShoppingListEdit(Model model, @PathVariable(name = "id") long id) {
+		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
 		model.addAttribute("shoppingList", s);
-		model.addAttribute("id", id);
 		return "shoppingList/shoppingList_edit";
 	}
-	
-	@PostMapping(path = {"/shoppingLists/{id}/edit"})
-	public String ShoppingListEditSave(@PathVariable(name = "id") long id,
-			@ModelAttribute @Valid ShoppingList shoppingList, BindingResult result, Model model){
-		if(result.hasErrors()) {
+
+	@PostMapping(path = { "/shoppingLists/{id}/edit" })
+	public String shoppingListEditSave(@PathVariable(name = "id") long id,
+			@ModelAttribute @Valid ShoppingList shoppingList, BindingResult result, Model model) {
+		if (result.hasErrors()) {
 			log.info(shoppingList.toString());
 			model.addAttribute("shoppingList", shoppingList);
 			return "shoppingList/shoppingList_edit";
@@ -60,36 +62,35 @@ public class ShoppingListController {
 		log.info(shoppingList.toString());
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
-		model.addAttribute("message", "Contact " + shoppingList.getName() + " saved.");
+		model.addAttribute("message", "ShoppingList " + shoppingList.getName() + " saved.");
 
 		return "redirect:/shoppingList/" + shoppingList.getId();
 	}
-	
-	
-	@GetMapping(path = {"/shoppingListCreate"})
-	public String ShoppingListCreate(@ModelAttribute @Valid ShoppingList shoppingList, Model model){
+
+	@GetMapping(path = { "/shoppingListCreate" })
+	public String ShoppingListCreate(@ModelAttribute @Valid ShoppingList shoppingList, Model model) {
 		return "shoppingList/shoppingList_create";
 	}
-	
-	@PostMapping(path = {"/shoppingListCreate"})
-	public String ShoppingListCreateSave(@ModelAttribute @Valid ShoppingList shoppingList, Model model){
+
+	@PostMapping(path = { "/shoppingListCreate" })
+	public String ShoppingListCreateSave(@ModelAttribute @Valid ShoppingList shoppingList, Model model) {
 		log.info(shoppingList.toString());
-		
+
 		shoppingList.setCreatedUtc();
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
-		
-		return "redirect:/shoppingList/"+ shoppingList.getId();
+
+		return "redirect:/shoppingList/" + shoppingList.getId();
 	}
-	
-	@GetMapping(path = {"shoppingLists/{id}/delete"})
+
+	@GetMapping(path = { "shoppingLists/{id}/delete" })
 	public String listDelete(Model model, @PathVariable(name = "id") Long id) {
 		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
 		model.addAttribute("shoppingLists", s);
 		return "shoppingList/shoppingList_delete";
 	}
-	
+
 	@PostMapping(path = "/shoppingLists/{id}/delete")
 	public String listDeleteSave(@PathVariable(name = "id") Long id, @ModelAttribute @Valid ShoppingList shoppingList,
 			BindingResult result, Model model) {
@@ -101,10 +102,5 @@ public class ShoppingListController {
 			return "redirect:/shoppingLists";
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 }

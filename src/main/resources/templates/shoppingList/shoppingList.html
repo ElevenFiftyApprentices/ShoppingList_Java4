@@ -27,6 +27,8 @@
 					<td th:text="${shoppingList.modifiedUtc}"></td>
 					<td><a href="/"
 						th:href="@{|/shoppingLists/${shoppingList.id}/edit|}">Edit</a></td>
+					<td><a href="/"
+						th:href="@{|/shoppingLists|}">Back</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -34,5 +36,7 @@
 			<h1>List not found</h1>
 		</div>
 	</div>
+	
+	
 </body>
 </html>
