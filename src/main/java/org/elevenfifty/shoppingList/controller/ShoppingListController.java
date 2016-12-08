@@ -3,6 +3,7 @@ package org.elevenfifty.shoppinglist.controller;
 import javax.validation.Valid;
 
 import org.elevenfifty.shoppinglist.beans.ShoppingList;
+import org.elevenfifty.shoppinglist.repositories.ShoppingListItemRepository;
 import org.elevenfifty.shoppinglist.repositories.ShoppingListRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,9 @@ public class ShoppingListController {
 	@Autowired
 	private ShoppingListRepository shoppingListRepo;
 	
+	@Autowired
+	private ShoppingListItemRepository shoppingListItemRepo;
+	
 	@GetMapping(path = {"/shoppingLists"})
 	public String ShoppingListsPage(ShoppingList shoppingList, Model model){
 		model.addAttribute("shoppingList",shoppingListRepo.findAll());
@@ -34,6 +38,7 @@ public class ShoppingListController {
 		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
 		model.addAttribute("shoppingList", s);
+		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAll());
 		
 		return "shoppingList/shoppingList";
 		
@@ -60,7 +65,7 @@ public class ShoppingListController {
 		log.info(shoppingList.toString());
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
-		model.addAttribute("message", "Contact " + shoppingList.getName() + " saved.");
+		model.addAttribute("message", "ShoppingList " + shoppingList.getName() + " saved.");
 
 		return "redirect:/shoppingList/" + shoppingList.getId();
 	}
