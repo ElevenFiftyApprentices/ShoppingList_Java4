@@ -56,12 +56,14 @@ public class ShoppingListController {
 	@PostMapping(path = {"/shoppingLists/{id}/edit"})
 	public String ShoppingListEditSave(@PathVariable(name = "id") long id,
 			@ModelAttribute @Valid ShoppingList shoppingList, BindingResult result, Model model){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
 		if(result.hasErrors()) {
 			log.info(shoppingList.toString());
 			model.addAttribute("shoppingList", shoppingList);
 			return "shoppingList/shoppingList_edit";
 		}
 		log.info(shoppingList.toString());
+		shoppingList.setCreatedUtc();
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
 		model.addAttribute("message", "ShoppingList " + shoppingList.getName() + " saved.");

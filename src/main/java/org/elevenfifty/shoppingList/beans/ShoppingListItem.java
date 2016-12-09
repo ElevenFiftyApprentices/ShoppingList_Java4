@@ -35,9 +35,9 @@ public class ShoppingListItem {
 	private Date modifiedUtc;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "notes_id")
-	private Notes notes;
+//	@OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "notes_id")
+//	private Notes notes;
 
 
 	
@@ -51,14 +51,14 @@ public class ShoppingListItem {
 	}
 
 
-
-	public Notes getNote() {
-		return notes;
-	}
-
-	public void setNote(Notes note) {
-		this.notes = note;
-	}
+//
+//	public Notes getNote() {
+//		return notes;
+//	}
+//
+//	public void setNote(Notes note) {
+//		this.notes = note;
+//	}
 
 	public long getId() {
 		return id;

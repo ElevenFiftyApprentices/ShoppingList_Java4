@@ -31,7 +31,7 @@ public class ListItemController {
 	@GetMapping(path = {"/shoppingList/{shoppingListId}/items"})
 	public String ShoppingListItems(ShoppingListItem shoppingListItem, Model model){
 		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAll());
-		return "shoppingListItems";
+		return "shoppingListItem/shoppingListItems";
 	}
 	
 	@GetMapping(path = {"/shoppingList/{shoppingListId}/{id}"})
@@ -58,6 +58,7 @@ public class ListItemController {
 			model.addAttribute("shoppingListItem", shoppingListItem);
 			return "shoppingList/editShoppingListItem";
 		}
+		
 		log.info(shoppingListItem.toString());
 		shoppingListItem.setModifiedUtc();
 		shoppingListItemRepo.save(shoppingListItem);
