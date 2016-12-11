@@ -48,7 +48,7 @@ public class ShoppingListController {
 		model.addAttribute("id", id);
 		ShoppingList s = shoppingListRepo.findOne(id);
 		model.addAttribute("shoppingList", s);
-		return "shoppingList/shoppingList_edit";
+		return "shoppingList/shoppingListEdit";
 	}
 
 	@PostMapping(path = { "/shoppingLists/{id}/edit" })
@@ -57,7 +57,7 @@ public class ShoppingListController {
 		if (result.hasErrors()) {
 			log.info(shoppingList.toString());
 			model.addAttribute("shoppingList", shoppingList);
-			return "shoppingList/shoppingList_edit";
+			return "shoppingList/shoppingListEdit";
 		}
 		log.info(shoppingList.toString());
 		shoppingList.setModifiedUtc();
@@ -67,12 +67,12 @@ public class ShoppingListController {
 		return "redirect:/shoppingList/" + shoppingList.getId();
 	}
 
-	@GetMapping(path = { "/shoppingListCreate" })
+	@GetMapping(path = { "/shoppingLists/create" })
 	public String ShoppingListCreate(@ModelAttribute @Valid ShoppingList shoppingList, Model model) {
 		return "shoppingList/shoppingList_create";
 	}
 
-	@PostMapping(path = { "/shoppingListCreate" })
+	@PostMapping(path = { "/shoppingLists/create" })
 	public String ShoppingListCreateSave(@ModelAttribute @Valid ShoppingList shoppingList, Model model) {
 		log.info(shoppingList.toString());
 

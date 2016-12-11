@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<style type="text/css">
+.btn-primary {
+	background: default;
+	color: #ffffff;
+}
+</style>
+</head>
+<body layout:fragment="content">
+
+	<div class="row">
+
+
+		<!-- <h1>Edit Shopping List</h1>
+		<form th:action="@{|/shoppingLists/${shoppingList.id}/edit|}"
+			enctype="multipart/form-data" method="POST">
+			<input type="hidden" name="id" th:field="*{id}" />
+			<div class="field">
+				<label for="name">List Name</label> <input name="name" type="text"
+					th:value="${name}" /> <span th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}">Name not found</span>
+			</div>
+
+			<div class="form-group">
+				<label for="color">Color</label> <input type="text" name="color"
+					class="form-control" placeholder="color" th:field="*{color}" /> <span
+					th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Color
+					not found</span>
+			</div>
+
+			<button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+
+</body>
+</html> -->
+
+<h1>Edit List Details</h1>
+
+		<form method="POST" th:object="${shoppingList}"
+			enctype="multipart/form-data">
+			<input type="hidden" th:field="*{id}" />
+
+			<!-- <div class="form-group">
+				<label for="">Shopping List ID</label> <input type="text" name="id"
+					class="form-control" placeholder="Shopping List ID"
+					th:field="*{id}" /> <span
+					th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Shopping List
+					ID</span>
+			</div> -->
+
+			<div class="form-group">
+				<label for="name">Name</label> <input type="text"
+					name="name" class="form-control" placeholder="name"
+					th:field="*{name}" /> <span
+					th:if="${#fields.hasErrors('name')}"
+					th:errors="*{name}">Name Error</span>
+			</div>
+
+			<div class="form-group">
+				<label for="color">Color</label> <input
+					type="text" name="color" class="form-control"
+					placeholder="Color" th:field="*{color}" />
+					</div>
+				<!-- <span th:if="${#fields.hasErrors('color)}"
+					th:errors="*{color}">Color</span>
+			</div>
+
+			<div class="form-group">
+				<label for="created_utc">Created Utc</label> <input type="text"
+					name="created_utc" class="form-control"
+					placeholder="Created Utc" th:field="*{created_utc}" /> <span
+					th:if="${#fields.hasErrors('created_utc')}"
+					th:errors="*{created_utc}">Created Utc</span>
+			</div> -->
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+
+	</div>
+
+</body>
+</html>
