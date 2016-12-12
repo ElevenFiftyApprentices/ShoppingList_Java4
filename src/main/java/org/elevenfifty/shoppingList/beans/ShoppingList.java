@@ -1,4 +1,4 @@
-package org.elevenfifty.shoppingList.beans;
+package org.elevenfifty.shoppinglist.beans;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+import org.elevenfifty.shoppinglist.beans.User;
+
 
 
 @Entity
@@ -26,13 +28,13 @@ public class ShoppingList {
 	private long id;
 
 	
-	@OneToMany(mappedBy="shopping_list", cascade = CascadeType.ALL)
-	private  List <ShoppingListItem> shoppingListItems; 
+	@OneToMany(mappedBy="shoppingList", cascade = CascadeType.ALL)
+	private  List <ShoppingListItem> shoppingListItem; 
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;	
+//	@ManyToOne
+//	@JoinColumn(name = "user_id")
+//	private User user;	
 
 	@Size(max = 100)
 	private String name;
@@ -43,21 +45,21 @@ public class ShoppingList {
 	private Date modifiedUtc;
 
 
-	public List<ShoppingListItem> getShoppingListItems() {
-		return shoppingListItems;
+	public List<ShoppingListItem> getShoppingListItem() {
+		return shoppingListItem;
 	}
 
-	public void setShoppingListItems(List<ShoppingListItem> shoppingListItems) {
-		this.shoppingListItems = shoppingListItems;
+	public void setShoppingListItem(List<ShoppingListItem> shoppingListItem) {
+		this.shoppingListItem = shoppingListItem;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 
 	public long getId() {
 		return id;
@@ -99,5 +101,33 @@ public class ShoppingList {
 		this.modifiedUtc = new Date(System.currentTimeMillis());
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ShoppingList other = (ShoppingList) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ShoppingList [id=" + id + ", shoppingListItems=" + shoppingListItem + ", name=" + name + ", color="
+				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
+	}
+
+	
 }

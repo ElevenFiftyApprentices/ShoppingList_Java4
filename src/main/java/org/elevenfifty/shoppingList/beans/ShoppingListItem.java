@@ -1,4 +1,4 @@
-package org.elevenfifty.shoppingList.beans;
+package org.elevenfifty.shoppinglist.beans;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "shoppingListItem")
+@Table(name = "shopping_list_item")
 public class ShoppingListItem {
 	
 	@Id
@@ -35,30 +35,30 @@ public class ShoppingListItem {
 	private Date modifiedUtc;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "notes_id")
-	private Notes notes;
+//	@OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "notes_id")
+//	private Notes notes;
 
 
 	
 
-	public ShoppingList getList() {
+	public ShoppingList getShoppingList() {
 		return shoppingList;
 	}
 
-	public void setList(ShoppingList shoppingList) {
+	public void setShoppingList(ShoppingList shoppingList) {
 		this.shoppingList = shoppingList;
 	}
 
 
-
-	public Notes getNote() {
-		return notes;
-	}
-
-	public void setNote(Notes note) {
-		this.notes = note;
-	}
+//
+//	public Notes getNote() {
+//		return notes;
+//	}
+//
+//	public void setNote(Notes note) {
+//		this.notes = note;
+//	}
 
 	public long getId() {
 		return id;
@@ -107,5 +107,29 @@ public class ShoppingListItem {
 	public void setModifiedUtc() {
 		this.modifiedUtc = new Date(System.currentTimeMillis());
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ShoppingListItem other = (ShoppingListItem) obj;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+	
+	
 
 }
