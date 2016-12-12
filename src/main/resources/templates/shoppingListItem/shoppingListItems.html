@@ -7,7 +7,7 @@
 <body layout:fragment="content">
 	<div class="row">
 		<h1 style="text-align: center">Items List</h1>
-		<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/{shoppingList.Id}/createItem|}" role="button">Create New Item</a>
+		<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/${id}/createItem|}" role="button">Create New Item</a>
 		<table style="width:100%" border="2">
 			<thread>
 				<tr>
