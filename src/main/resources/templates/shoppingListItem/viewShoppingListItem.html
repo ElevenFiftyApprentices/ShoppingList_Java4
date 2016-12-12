@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/basic">
+<head>
+<title>Getting Started: Serving Web Content</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body layout:fragment="content">
+	<div class="row">
+	<h1>PRODUCT Details</h1>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Item Name</th>
+					<th>Priority</th>
+					<th>Creation Date</th>
+					<th>Modified Date</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="shoppingListItem : ${shoppingListItem}">
+					<td th:text="${shoppingListItem.contents}"></td>
+					<td th:if="${shoppingListItem.priority} == 1">Get it Now</td>
+					<td th:if="${shoppingListItem.priority} == 2">Need it soon</td>
+					<td th:if="${shoppingListItem.priority} == 3">It can wait</td>
+					<td th:text="${shoppingListItem.createdUtc}"></td>
+					<td th:text="${shoppingListItem.modifiedUtc}"></td>
+					<td><a href="/" th:href="@{|/shoppingLists/${shoppingListItem.shoppingList}/${shoppingListItem.id}/edit|}">Edit</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<div th:unless="${shoppingListItem}">
+			<h1>List not found</h1>
+		</div>
+	</div>
+	<a href="/" role="button" th:href="@{|/shoppingList/${shoppingList.id}/items|}">Back</a>
+	
+	
+</body>
+</html>

@@ -1,24 +1,49 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layouts/basic">
 <head>
     <title>Shopping List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+.table-hover thead tr:hover th, 
+ .table-hover tbody tr:hover td {
+        background-color: #DD1709;
+}
+
+.btn-primary {
+	border: #000000;
+    background: #B64723;
+    color: #000000;
+}
+</style>
 </head>
 <body layout:fragment="content">
 	<div class="row">
 		<h1 style="text-align: center">Items List</h1>
+		<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/${shoppingList.id}/createItem|}" role="button">Create New Item</a>
 		<table style="width:100%" border="2">
 			<thread>
 				<tr>
 					<th>Contents</th>
 					<th>Priority</th>
+					<th>View</th>
+					<th>Edit</th>
 					<th>Delete</th>
+					
 				</tr>
 			</thread>
 			<tbody>
 				<tr th:each= "shoppingListItem: ${shoppingListItem}">
+<<<<<<< HEAD
 					<td th:text="${contents}"></td>
 					<td th:text="${priority}"></td>
+=======
+					<td th:text="${shoppingListItem.contents}"></td>
+					<td th:if="${shoppingListItem.priority} == 1">Get it Now</td>
+					<td th:if="${shoppingListItem.priority} == 2">Need it soon</td>
+					<td th:if="${shoppingListItem.priority} == 3">It can wait</td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${shoppingList.id}/${id}|}">View</a></td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${shoppingList.id}/${id}/edit|}">Edit</a></td>
+>>>>>>> f0187c63f39db8f39dde347ddd7ca294c9846c43
 					<td><button type="button">Delete</button></td>
 				</tr>
 			</tbody>

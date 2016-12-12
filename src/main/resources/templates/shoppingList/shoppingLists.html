@@ -6,6 +6,7 @@
 <title>Products</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style type="text/css">
+<<<<<<< HEAD
 .table-hover thead tr:hover th, .table-hover tbody tr:hover td {
 	background-color: default;
 }
@@ -13,6 +14,18 @@
 .btn-primary {
 	background: default;
 	color: #ffffff;
+=======
+.table-hover thead tr:hover th, 
+ .table-hover tbody tr:hover td {
+        background-color: #DD1709;
+}
+
+.btn-primary {
+	
+	border: #000000;
+    background: #B64723;
+    color: #000000;
+>>>>>>> f0187c63f39db8f39dde347ddd7ca294c9846c43
 }
 </style>
 </head>
@@ -40,6 +53,7 @@
 				<td th:text="${s.CreatedUtc}"></td>
 				<td th:text="${s.ModifiedUtc}"></td>
 				<td th:text="${s.Id}"></td>
+<<<<<<< HEAD
 
 				<td><a class="btn btn-primary" href="/" role="button"
 					th:href="@{|/shoppingList/${s.id}|}">View</a></td>
@@ -47,6 +61,12 @@
 					th:href="@{|/shoppingLists/${s.id}/edit|}">Edit</a></td>
 				<td><a class="btn btn-primary" href="/" role="button"
 					th:href="@{|/shoppingLists/${s.id}/delete|}">Delete</a></td>
+=======
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}/items|}">View</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${s.id}/edit|}">Edit</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${s.id}/delete|}">Delete</a></td>
+				
+>>>>>>> f0187c63f39db8f39dde347ddd7ca294c9846c43
 			</tr>
 		</tbody>
 	</table>
