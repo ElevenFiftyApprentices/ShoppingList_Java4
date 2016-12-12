@@ -7,19 +7,26 @@
 <body layout:fragment="content">
 	<div class="row">
 		<h1 style="text-align: center">Items List</h1>
-		<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/${id}/createItem|}" role="button">Create New Item</a>
+		<a class="btn btn-primary" href="/" th:href="@{|/shoppingList/${shoppingList.id}/createItem|}" role="button">Create New Item</a>
 		<table style="width:100%" border="2">
 			<thread>
 				<tr>
 					<th>Contents</th>
 					<th>Priority</th>
+					<th>View</th>
+					<th>Edit</th>
 					<th>Delete</th>
+					
 				</tr>
 			</thread>
 			<tbody>
 				<tr th:each= "shoppingListItem: ${shoppingListItem}">
 					<td th:text="${shoppingListItem.contents}"></td>
-					<td th:text="${shoppingListItem.priority}"></td>
+					<td th:if="${shoppingListItem.priority} == 1">Get it Now</td>
+					<td th:if="${shoppingListItem.priority} == 2">Need it soon</td>
+					<td th:if="${shoppingListItem.priority} == 3">It can wait</td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${shoppingList.id}/${id}|}">View</a></td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${shoppingList.id}/${id}/edit|}">Edit</a></td>
 					<td><button type="button">Delete</button></td>
 				</tr>
 			</tbody>

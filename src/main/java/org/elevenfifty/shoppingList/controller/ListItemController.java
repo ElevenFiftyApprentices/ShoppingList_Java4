@@ -29,7 +29,8 @@ public class ListItemController {
 	private ShoppingListRepository shoppingListRepo;
 	
 	@GetMapping(path = {"/shoppingList/{id}/items"})
-	public String ShoppingListItems(ShoppingListItem shoppingListItem, Model model){
+	public String ShoppingListItems(ShoppingListItem shoppingListItem, @PathVariable(name = "id") long id, Model model){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
 		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAll());
 		return "shoppingListItem/shoppingListItems";
 	}
@@ -55,15 +56,17 @@ public class ListItemController {
 		ShoppingList shoppingList = shoppingListRepo.findOne(id);
 		shoppingListRepo.save(shoppingList);
 		
-		return "redirect:/shoppingList/"+ shoppingListItem.getId();
+		return "redirect:/shoppingList/"+ shoppingList.getId() + "/items";
 	}
 	
 	@GetMapping(path = {"/shoppingList/{shoppingListId}/{id}"})
 	public String ShoppingListItem(Model model, @PathVariable(name = "id") long id){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
+	
 		model.addAttribute("id", id);
 		ShoppingListItem sli = shoppingListItemRepo.findOne(id);
 		model.addAttribute("shoppingListItem", sli);
-		return "viewShoppingListItem";
+		return "shoppingListItem/viewShoppingListItem";
 	}	
 	
 	@GetMapping (path = {"/shoppingList/item/{id}/edit"})

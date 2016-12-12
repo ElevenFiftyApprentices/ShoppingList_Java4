@@ -36,8 +36,8 @@ public class ShoppingListController {
 	@GetMapping(path = {"/shoppingList/{id}"})
 	public String ShoppingListView(Model model, @PathVariable(name = "id") long id){
 		model.addAttribute("id", id);
-		ShoppingList s = shoppingListRepo.findOne(id);
-		model.addAttribute("shoppingList", s);
+		ShoppingList sl = shoppingListRepo.findOne(id);
+		model.addAttribute("shoppingList", sl);
 		
 		return "shoppingList/shoppingList";
 		
