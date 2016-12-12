@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS 	heroku_544f0fc959e74e2.shopping_list (
 	
 CREATE TABLE IF NOT EXISTS heroku_544f0fc959e74e2.shopping_list_item (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	shopping_list_id INT UNSIGNED NOT NULL,
+	shopping_list_id INT NOT NULL,
 	contents VARCHAR(100) NOT NULL,
 	priority INT NOT NULL,
 	is_checked tinyint(1) NOT NULL DEFAULT 0,	
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS heroku_544f0fc959e74e2.shopping_list_item (
 	
 CREATE TABLE IF NOT EXISTS heroku_544f0fc959e74e2.notes(
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-	shopping_list_item_id INT UNSIGNED NOT NULL,
+	shopping_list_item_id INT NOT NULL,
 	body VARCHAR(100) NOT NULL,
 	created_date VARCHAR(45) NOT NULL,
 	modified_date VARCHAR(45) NULL,

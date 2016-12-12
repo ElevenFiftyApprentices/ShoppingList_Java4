@@ -42,11 +42,11 @@ public class ShoppingListItem {
 
 	
 
-	public ShoppingList getList() {
+	public ShoppingList getShoppingList() {
 		return shoppingList;
 	}
 
-	public void setList(ShoppingList shoppingList) {
+	public void setShoppingList(ShoppingList shoppingList) {
 		this.shoppingList = shoppingList;
 	}
 

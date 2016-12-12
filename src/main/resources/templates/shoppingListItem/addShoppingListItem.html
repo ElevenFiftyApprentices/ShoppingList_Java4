@@ -24,7 +24,9 @@ form {
 	<h1>Shopping Item List</h1>
 	<form method="POST" th:object="${shoppingListItem}"
 		enctype="multipart/form-data">
-		<input name="userId" type="hidden" th:value="${user.id}" />
+		<input name="id" type="hidden" th:value="${id}" />
+		<input name="shoppingListId" type="hidden" th:value="${shoppingList.id}"/>
+		<input type="hidden" name="isChecked" value="false"/>
 
 		<div class="form-group">
 			<label for="contents">Contents</label> <input type="text" name="contents"
@@ -39,14 +41,16 @@ form {
 				th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}">Priority
 				not found</span>
 		</div>
-
+		
 		<div class="form-group">
-			<label for="delete">Delete Item</label> <input type="text"
-				name="delete" class="form-control" placeholder="delete"
-				th:field="*{delete}" /> <span
-				th:if="${#fields.hasErrors('delete')}" th:errors="*{delete}">Delete Item
-				Error</span>
-		</div>
+		    	<label for="bought">Priority:</label>
+		    	<select class="form-control" name="priority">
+		    		<option th:selected="*{priority} == 1" value="1">High</option>
+		    		<option th:selected="*{priority} == 2" value="2">Medium</option>
+		    		<option th:selected="*{priority} == 3" value="3">Low</option>
+		    		</select>
+		    </div>
+		
 
 		<button type="submit" class="btn btn-default">Submit</button>
 	</form>

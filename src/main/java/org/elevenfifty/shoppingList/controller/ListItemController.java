@@ -67,18 +67,24 @@ public class ListItemController {
 		return "redirect:/shoppingList/{shoppingListId}/" + shoppingListItem.getId();
 	}
 	
-	@GetMapping(path = {"/shoppingList/{shoppingListId}/createItem"})
-	public String ShoppingListItemCreate(@ModelAttribute @Valid ShoppingListItem shoppingListItem, Model model){
-		return "shoppingList/addShoppingListItem";
+	@GetMapping(path = {"/shoppingList/{id}/createItem"})
+	public String ShoppingListItemCreate(Model model,  @PathVariable(name = "id") long id){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
+		ShoppingListItem sli = new ShoppingListItem();
+		model.addAttribute("shoppingListItem", sli);
+		return "shoppingListItem/addShoppingListItem";
 	}
 	
-	@PostMapping (path = {"/shoppingList/{shoppingListId}/createItem"})
-	public String ShoppingListItemCreateSave(@ModelAttribute @Valid ShoppingListItem shoppingListItem, Model model){
+	@PostMapping (path = {"/shoppingList/{id}/createItem"})
+	public String ShoppingListItemCreateSave(@PathVariable(name = "id") long id, @ModelAttribute @Valid ShoppingListItem shoppingListItem, BindingResult result,Model model){
 		log.info(shoppingListItem.toString());
-		
+		shoppingListItem.setShoppingList(shoppingListRepo.findOne(id));		
 		shoppingListItem.setCreatedUtc();
-		shoppingListItem.setModifiedUtc();
+		shoppingListItem.setModifiedUtc();		
 		shoppingListItemRepo.save(shoppingListItem);
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id).getShoppingListItem());
+		ShoppingList shoppingList = shoppingListRepo.findOne(id);
+		shoppingListRepo.save(shoppingList);
 		
 		return "redirect:/shoppingList/"+ shoppingListItem.getId();
 	}
