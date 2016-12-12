@@ -36,8 +36,8 @@ public class ShoppingListController {
 	@GetMapping(path = {"/shoppingList/{id}"})
 	public String ShoppingListView(Model model, @PathVariable(name = "id") long id){
 		model.addAttribute("id", id);
-		ShoppingList s = shoppingListRepo.findOne(id);
-		model.addAttribute("shoppingList", s);
+		ShoppingList sl = shoppingListRepo.findOne(id);
+		model.addAttribute("shoppingList", sl);
 		
 		return "shoppingList/shoppingList";
 		
@@ -56,12 +56,14 @@ public class ShoppingListController {
 	@PostMapping(path = {"/shoppingLists/{id}/edit"})
 	public String ShoppingListEditSave(@PathVariable(name = "id") long id,
 			@ModelAttribute @Valid ShoppingList shoppingList, BindingResult result, Model model){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
 		if(result.hasErrors()) {
 			log.info(shoppingList.toString());
 			model.addAttribute("shoppingList", shoppingList);
 			return "shoppingList/shoppingList_edit";
 		}
 		log.info(shoppingList.toString());
+		shoppingList.setCreatedUtc();
 		shoppingList.setModifiedUtc();
 		shoppingListRepo.save(shoppingList);
 		model.addAttribute("message", "ShoppingList " + shoppingList.getName() + " saved.");

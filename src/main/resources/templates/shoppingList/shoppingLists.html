@@ -9,12 +9,14 @@
 <style type="text/css">
 .table-hover thead tr:hover th, 
  .table-hover tbody tr:hover td {
-        background-color: #fcccf6;
+        background-color: #DD1709;
 }
 
 .btn-primary {
-    background: #fa25de;
-    color: #ffffff;
+	
+	border: #000000;
+    background: #B64723;
+    color: #000000;
 }
 </style>
 </head>
@@ -38,7 +40,7 @@
 				<td th:text="${s.CreatedUtc}"></td>
 				<td th:text="${s.ModifiedUtc}"></td>
 				<td th:text="${s.Id}"></td>
-				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}|}">View</a></td>
+				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${s.id}/items|}">View</a></td>
 				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${s.id}/edit|}">Edit</a></td>
 				<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${s.id}/delete|}">Delete</a></td>
 				

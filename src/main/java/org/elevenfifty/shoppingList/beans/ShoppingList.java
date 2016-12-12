@@ -29,7 +29,7 @@ public class ShoppingList {
 
 	
 	@OneToMany(mappedBy="shoppingList", cascade = CascadeType.ALL)
-	private  List <ShoppingListItem> shoppingListItems; 
+	private  List <ShoppingListItem> shoppingListItem; 
 	
 	
 //	@ManyToOne
@@ -45,12 +45,12 @@ public class ShoppingList {
 	private Date modifiedUtc;
 
 
-	public List<ShoppingListItem> getShoppingListItems() {
-		return shoppingListItems;
+	public List<ShoppingListItem> getShoppingListItem() {
+		return shoppingListItem;
 	}
 
-	public void setShoppingListItems(List<ShoppingListItem> shoppingListItems) {
-		this.shoppingListItems = shoppingListItems;
+	public void setShoppingListItem(List<ShoppingListItem> shoppingListItem) {
+		this.shoppingListItem = shoppingListItem;
 	}
 
 //	public User getUser() {
@@ -125,7 +125,7 @@ public class ShoppingList {
 
 	@Override
 	public String toString() {
-		return "ShoppingList [id=" + id + ", shoppingListItems=" + shoppingListItems + ", name=" + name + ", color="
+		return "ShoppingList [id=" + id + ", shoppingListItems=" + shoppingListItem + ", name=" + name + ", color="
 				+ color + ", createdUtc=" + createdUtc + ", modifiedUtc=" + modifiedUtc + "]";
 	}
 
