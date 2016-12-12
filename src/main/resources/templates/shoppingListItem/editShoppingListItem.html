@@ -21,7 +21,9 @@
 
 		<form th:action="@{|/shoppingListItem/${shoppingListItem.id}|}"
 			enctype="multipart/form-data" method="POST">
-			<input name="id" type="hidden" th:value="${user.id}" />
+			<input name="id" type="hidden" th:value="${id}" />
+			<input name="shoppingListId" type="hidden" th:value="${shoppingList.id}"/>
+		<input type="hidden" name="isChecked" value="false"/>
 
 			<div class="field">
 				<label for="contents">Edit Contents</label> <input name="contents" type="text"

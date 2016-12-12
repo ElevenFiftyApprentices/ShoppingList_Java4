@@ -59,28 +59,33 @@ public class ListItemController {
 		return "redirect:/shoppingList/"+ shoppingList.getId() + "/items";
 	}
 	
-	@GetMapping(path = {"/shoppingList/{shoppingListId}/{id}"})
-	public String ShoppingListItem(Model model, @PathVariable(name = "id") long id){
-		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
-	
+	@GetMapping(path = {"/shoppingList/{shoppingList}/{id}"})
+	public String ShoppingListItem(ShoppingListItem shoppingListItem, Model model, @PathVariable(name = "id") long id){
+		model.addAttribute("sl", shoppingListRepo.findOne(id));
+		model.addAttribute("shoppingListItem", shoppingListItemRepo.findOne(id));
 		model.addAttribute("id", id);
 		ShoppingListItem sli = shoppingListItemRepo.findOne(id);
 		model.addAttribute("shoppingListItem", sli);
 		return "shoppingListItem/viewShoppingListItem";
 	}	
 	
-	@GetMapping (path = {"/shoppingList/{shoppingListId}/{id}/itemedit"})
+	@GetMapping (path = {"/shoppingList/{shoppingList}/{id}/itemedit"})
 	public String ShoppingListItemEdit(Model model, @PathVariable(name = "id")long id){
-		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
+		model.addAttribute("s", shoppingListRepo.findOne(id));
+		model.addAttribute("shoppingListItem", shoppingListItemRepo.findOne(id));
+		model.addAttribute("id", id);
+		
 		ShoppingListItem sli = shoppingListItemRepo.findOne(id);
 		model.addAttribute("shoppingList", sli);
-		model.addAttribute("id", id);
+		
 		return "shoppingListItem/editShoppingListItem";
 	}
 	
-	@PostMapping(path = {"/shoppingList/{shoppingListId}/{id}/itemedit"})
+	@PostMapping(path = {"/shoppingList/{shoppingList}/{id}/itemedit"})
 	public String ShoppingListItemEditSave(@PathVariable(name = "id") long id,
 			@ModelAttribute @Valid ShoppingListItem shoppingListItem, BindingResult result, Model model){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
+		model.addAttribute("shoppingListItem", shoppingListItemRepo.findOne(id));
 		if(result.hasErrors()) {
 			log.info(shoppingListItem.toString());log.info(shoppingListItem.toString());
 			model.addAttribute("id", id);

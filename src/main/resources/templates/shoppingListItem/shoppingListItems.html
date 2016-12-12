@@ -37,8 +37,8 @@
 					<td th:if="${shoppingListItem.priority} == 1">Get it Now</td>
 					<td th:if="${shoppingListItem.priority} == 2">Need it soon</td>
 					<td th:if="${shoppingListItem.priority} == 3">It can wait</td>
-					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${shoppingList.id}/${id}|}">View</a></td>
-					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${shoppingList.id}/${id}/edit|}">Edit</a></td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${shoppingList.id}/${shoppingListItem.id}|}">View</a></td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${shoppingList.id}/${shoppingListItem.id}/edit|}">Edit</a></td>
 					<td><button type="button">Delete</button></td>
 				</tr>
 			</tbody>

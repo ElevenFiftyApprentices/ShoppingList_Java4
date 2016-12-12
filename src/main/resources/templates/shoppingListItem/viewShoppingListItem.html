@@ -27,7 +27,7 @@
 					<td th:if="${shoppingListItem.priority} == 3">It can wait</td>
 					<td th:text="${shoppingListItem.createdUtc}"></td>
 					<td th:text="${shoppingListItem.modifiedUtc}"></td>
-					<td><a href="/" th:href="@{|/shoppingLists/${shoppingListItem.shoppingList}/${shoppingListItem.id}/edit|}">Edit</a></td>
+					<td><a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingLists/${shoppingListItem.shoppingList.id}/${shoppingListItem.id}/edit|}">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -35,7 +35,7 @@
 			<h1>List not found</h1>
 		</div>
 	</div>
-	<a href="/" role="button" th:href="@{|/shoppingList/${shoppingList.id}/items|}">Back</a>
+	<a class="btn btn-primary" href="/" role="button" th:href="@{|/shoppingList/${shoppingListItem.shoppingList.id}/items|}">Back</a>
 	
 	
 </body>
