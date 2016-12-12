@@ -69,7 +69,7 @@ public class ListItemController {
 		return "shoppingListItem/viewShoppingListItem";
 	}	
 	
-	@GetMapping (path = {"/shoppingList/{shoppingList}/{id}/itemedit"})
+	@GetMapping (path = {"/shoppingList/{id}/itemedit"})
 	public String ShoppingListItemEdit(Model model, @PathVariable(name = "id")long id){
 		model.addAttribute("s", shoppingListRepo.findOne(id));
 		model.addAttribute("shoppingListItem", shoppingListItemRepo.findOne(id));
@@ -81,7 +81,7 @@ public class ListItemController {
 		return "shoppingListItem/editShoppingListItem";
 	}
 	
-	@PostMapping(path = {"/shoppingList/{shoppingList}/{id}/itemedit"})
+	@PostMapping(path = {"/shoppingList/{id}/itemedit"})
 	public String ShoppingListItemEditSave(@PathVariable(name = "id") long id,
 			@ModelAttribute @Valid ShoppingListItem shoppingListItem, BindingResult result, Model model){
 		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
@@ -90,21 +90,23 @@ public class ListItemController {
 			log.info(shoppingListItem.toString());log.info(shoppingListItem.toString());
 			model.addAttribute("id", id);
 			shoppingListItem.setShoppingList(shoppingListRepo.findOne(id));		
-			shoppingListItem.setCreatedUtc();
-			shoppingListItem.setModifiedUtc();		
-			shoppingListItemRepo.save(shoppingListItem);
 			model.addAttribute("shoppingList", shoppingListRepo.findOne(id).getShoppingListItem());
 			ShoppingList shoppingList = shoppingListRepo.findOne(id);
-			shoppingListRepo.save(shoppingList);
 			return "redirect:/shoppingList/"+ shoppingList.getId() + "/items";
 		}
 		
 		log.info(shoppingListItem.toString());
-		shoppingListItem.setModifiedUtc();
+		model.addAttribute("id", id);
+		shoppingListItem.setShoppingList(shoppingListRepo.findOne(id));		
+		shoppingListItem.setCreatedUtc();
+		shoppingListItem.setModifiedUtc();		
 		shoppingListItemRepo.save(shoppingListItem);
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id).getShoppingListItem());
+		ShoppingList shoppingList = shoppingListRepo.findOne(id);
+		shoppingListRepo.save(shoppingList);
 		model.addAttribute("message", "Shopping List Item " + shoppingListItem.getContents() + " saved.");
 
-		return "redirect:/shoppingList/{shoppingListId}/" + shoppingListItem.getId();
+		return "redirect:/shoppingList/"+ shoppingList.getId() + "/items";
 	}
 		
 	

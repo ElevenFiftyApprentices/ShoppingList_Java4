@@ -27,27 +27,20 @@
 
 			<div class="field">
 				<label for="contents">Edit Contents</label> <input name="contents" type="text"
-					th:value="${contents}" /> <span
-					th:if="${#fields.hasErrors('contents')}"
+					th:value="${shoppingListItem.contents}" /> <span
+					th:if="${#fields.hasErrors('shoppingListItem.contents')}"
 					th:errors="*{contents}">Contents not found</span>
 			</div>
 
 			<div class="form-group">
 		    	<label for="bought">Priority:</label>
 		    	<select class="form-control" name="priority">
-		    		<option th:selected="*{priority} == 1" value="1">High</option>
-		    		<option th:selected="*{priority} == 2" value="2">Medium</option>
-		    		<option th:selected="*{priority} == 3" value="3">Low</option>
+		    		<option th:selected="*{shoppingListItem.priority} == 1" value="1">High</option>
+		    		<option th:selected="*{shoppingListItem.priority} == 2" value="2">Medium</option>
+		    		<option th:selected="*{shoppingListItem.priority} == 3" value="3">Low</option>
 		    		</select>
 		    </div>
 
-			<div class="form-group">
-				<label for="delete">Delete Item</label> <input type="text"
-					name="delete" class="form-control" placeholder="delete"
-					th:field="*{delete}" /> <span
-					th:if="${#fields.hasErrors('delete')}"
-					th:errors="*{delete}">Delete Error</span>
-			</div>
 
 			<button type="submit" class="btn btn-default">Submit</button>
 		</form>
