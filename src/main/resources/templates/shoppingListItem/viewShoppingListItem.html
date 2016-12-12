@@ -27,7 +27,7 @@
 					<td th:if="${shoppingListItem.priority} == 3">It can wait</td>
 					<td th:text="${shoppingListItem.createdUtc}"></td>
 					<td th:text="${shoppingListItem.modifiedUtc}"></td>
-					<td><a href="/" th:href="@{|/shoppingLists/${shoppingListItem.shoppingListId}/${shoppingListItem.id}/edit|}">Edit</a></td>
+					<td><a href="/" th:href="@{|/shoppingLists/${shoppingListItem.shoppingList}/${shoppingListItem.id}/edit|}">Edit</a></td>
 				</tr>
 			</tbody>
 		</table>

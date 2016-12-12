@@ -31,7 +31,7 @@ public class ListItemController {
 	@GetMapping(path = {"/shoppingList/{id}/items"})
 	public String ShoppingListItems(ShoppingListItem shoppingListItem, @PathVariable(name = "id") long id, Model model){
 		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
-		model.addAttribute("shoppingListItem", shoppingListItemRepo.findAll());
+		model.addAttribute("shoppingListItem", shoppingListRepo.findOne(id).getShoppingListItem());
 		return "shoppingListItem/shoppingListItems";
 	}
 	
@@ -69,21 +69,29 @@ public class ListItemController {
 		return "shoppingListItem/viewShoppingListItem";
 	}	
 	
-	@GetMapping (path = {"/shoppingList/item/{id}/edit"})
+	@GetMapping (path = {"/shoppingList/{shoppingListId}/{id}/itemedit"})
 	public String ShoppingListItemEdit(Model model, @PathVariable(name = "id")long id){
+		model.addAttribute("shoppingList", shoppingListRepo.findOne(id));
 		ShoppingListItem sli = shoppingListItemRepo.findOne(id);
 		model.addAttribute("shoppingList", sli);
 		model.addAttribute("id", id);
-		return "editShoppingListItem";
+		return "shoppingListItem/editShoppingListItem";
 	}
 	
-	@PostMapping(path = {"/shoppingList/item/{id}/edit"})
+	@PostMapping(path = {"/shoppingList/{shoppingListId}/{id}/itemedit"})
 	public String ShoppingListItemEditSave(@PathVariable(name = "id") long id,
 			@ModelAttribute @Valid ShoppingListItem shoppingListItem, BindingResult result, Model model){
 		if(result.hasErrors()) {
-			log.info(shoppingListItem.toString());
-			model.addAttribute("shoppingListItem", shoppingListItem);
-			return "shoppingList/editShoppingListItem";
+			log.info(shoppingListItem.toString());log.info(shoppingListItem.toString());
+			model.addAttribute("id", id);
+			shoppingListItem.setShoppingList(shoppingListRepo.findOne(id));		
+			shoppingListItem.setCreatedUtc();
+			shoppingListItem.setModifiedUtc();		
+			shoppingListItemRepo.save(shoppingListItem);
+			model.addAttribute("shoppingList", shoppingListRepo.findOne(id).getShoppingListItem());
+			ShoppingList shoppingList = shoppingListRepo.findOne(id);
+			shoppingListRepo.save(shoppingList);
+			return "redirect:/shoppingList/"+ shoppingList.getId() + "/items";
 		}
 		
 		log.info(shoppingListItem.toString());
